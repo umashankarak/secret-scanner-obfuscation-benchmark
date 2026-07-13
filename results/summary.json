@@ -1,0 +1,95 @@
+{
+  "overall": {
+    "gitleaks/default": 0.4205840455840456,
+    "gitleaks/decode": 0.5628205128205128,
+    "betterleaks/default": 0.4187321937321937,
+    "betterleaks/decode": 0.5611823361823362,
+    "trufflehog/default": 0.18867521367521367
+  },
+  "by_family": {
+    "gitleaks/default": {
+      "char_format": 0.0,
+      "composition": 0.020370370370370372,
+      "contextual": 0.5950617283950618,
+      "control": 0.8876543209876543,
+      "encoding": 0.5105820105820106,
+      "indirection": 0.32407407407407407,
+      "multi_encoding": 0.44526748971193414,
+      "splitting": 0.0437037037037037
+    },
+    "gitleaks/decode": {
+      "char_format": 0.0,
+      "composition": 0.027777777777777776,
+      "contextual": 0.5950617283950618,
+      "control": 0.8876543209876543,
+      "encoding": 0.6649029982363316,
+      "indirection": 0.32407407407407407,
+      "multi_encoding": 0.9053497942386831,
+      "splitting": 0.0437037037037037
+    },
+    "betterleaks/default": {
+      "char_format": 0.0,
+      "composition": 0.020370370370370372,
+      "contextual": 0.5950617283950618,
+      "control": 0.8876543209876543,
+      "encoding": 0.5068783068783069,
+      "indirection": 0.32407407407407407,
+      "multi_encoding": 0.44362139917695476,
+      "splitting": 0.04296296296296296
+    },
+    "betterleaks/decode": {
+      "char_format": 0.0,
+      "composition": 0.027777777777777776,
+      "contextual": 0.5950617283950618,
+      "control": 0.8876543209876543,
+      "encoding": 0.6611992945326278,
+      "indirection": 0.32407407407407407,
+      "multi_encoding": 0.9049382716049382,
+      "splitting": 0.04296296296296296
+    },
+    "trufflehog/default": {
+      "char_format": 0.0,
+      "composition": 0.001851851851851852,
+      "contextual": 0.44382716049382714,
+      "control": 0.4419753086419753,
+      "encoding": 0.1474426807760141,
+      "indirection": 0.0,
+      "multi_encoding": 0.29506172839506173,
+      "splitting": 0.013333333333333334
+    }
+  },
+  "by_depth": {
+    "gitleaks/default": {
+      "1": 0.43468834688346886,
+      "2": 0.26342592592592595,
+      "3": 0.6469135802469136
+    },
+    "gitleaks/decode": {
+      "1": 0.5137308039747064,
+      "2": 0.6856481481481481,
+      "3": 0.9061728395061729
+    },
+    "betterleaks/default": {
+      "1": 0.4327009936766034,
+      "2": 0.262037037037037,
+      "3": 0.645679012345679
+    },
+    "betterleaks/decode": {
+      "1": 0.511743450767841,
+      "2": 0.6851851851851852,
+      "3": 0.9061728395061729
+    },
+    "trufflehog/default": {
+      "1": 0.17443541102077686,
+      "2": 0.16666666666666666,
+      "3": 0.4419753086419753
+    }
+  },
+  "robustness_index": {
+    "gitleaks/default": 0.2770084824053078,
+    "gitleaks/decode": 0.3658385823465188,
+    "betterleaks/default": 0.2761384059796758,
+    "betterleaks/decode": 0.3651448727639203,
+    "trufflehog/default": 0.12878810783572686
+  }
+}

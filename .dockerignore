@@ -1,0 +1,6 @@
+out/
+results/
+figures/
+corpus/
+.git/
+*.md

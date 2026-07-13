@@ -1,0 +1,22 @@
+[
+  {
+    "Description": "AWS Access Key",
+    "StartLine": 4, "EndLine": 4, "StartColumn": 21, "EndColumn": 40,
+    "Match": "aws_access_key_id = \"AKIA8XKVYXTZNXG1ZE6W\"",
+    "Secret": "AKIA8XKVYXTZNXG1ZE6W",
+    "File": "python/aws_access_key_id/T0_0/sample_00001.py",
+    "RuleID": "aws-access-token",
+    "Entropy": 3.58,
+    "Fingerprint": "python/aws_access_key_id/T0_0/sample_00001.py:aws-access-token:4"
+  },
+  {
+    "Description": "GitHub Personal Access Token",
+    "StartLine": 4, "EndLine": 4, "StartColumn": 14, "EndColumn": 53,
+    "Match": "ghp_sTdZZwmBgu248z4VWrvbyvq9QLEHzwpOlL30",
+    "Secret": "ghp_sTdZZwmBgu248z4VWrvbyvq9QLEHzwpOlL30",
+    "File": "python/github_pat/T0_0/sample_00209.py",
+    "RuleID": "github-pat",
+    "Entropy": 4.31,
+    "Fingerprint": "python/github_pat/T0_0/sample_00209.py:github-pat:4"
+  }
+]
