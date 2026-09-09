@@ -1,0 +1,750 @@
+run,family,transformation_id,secret_type,rule_id,samples_detected_by_rule
+betterleaks/decode,composition,T7.1,jwt,jwt,1
+betterleaks/decode,composition,T7.1,jwt,jwt-base64,7
+betterleaks/decode,composition,T7.1,slack_bot_token,slack-bot-token,1
+betterleaks/decode,composition,T7.1,stripe_secret_key,stripe-access-token,4
+betterleaks/decode,contextual,T6.1,aws_access_key_id,aws-access-token,90
+betterleaks/decode,contextual,T6.1,aws_keypair,aws-access-token,90
+betterleaks/decode,contextual,T6.1,github_pat,github-pat,90
+betterleaks/decode,contextual,T6.1,google_api_key,gcp-api-key,90
+betterleaks/decode,contextual,T6.1,jwt,jwt,90
+betterleaks/decode,contextual,T6.1,slack_bot_token,slack-bot-token,90
+betterleaks/decode,contextual,T6.1,stripe_secret_key,stripe-access-token,90
+betterleaks/decode,contextual,T6.4,aws_access_key_id,aws-access-token,90
+betterleaks/decode,contextual,T6.4,aws_keypair,aws-access-token,90
+betterleaks/decode,contextual,T6.4,github_pat,github-pat,90
+betterleaks/decode,contextual,T6.4,google_api_key,gcp-api-key,90
+betterleaks/decode,contextual,T6.4,jwt,jwt,90
+betterleaks/decode,contextual,T6.4,slack_bot_token,slack-bot-token,90
+betterleaks/decode,contextual,T6.4,stripe_secret_key,stripe-access-token,90
+betterleaks/decode,control,T0.0,aws_access_key_id,aws-access-token,90
+betterleaks/decode,control,T0.0,aws_keypair,aws-access-token,90
+betterleaks/decode,control,T0.0,aws_keypair,generic-api-key,88
+betterleaks/decode,control,T0.0,aws_secret_access_key,generic-api-key,85
+betterleaks/decode,control,T0.0,generic_hex_token,generic-api-key,86
+betterleaks/decode,control,T0.0,github_pat,github-pat,90
+betterleaks/decode,control,T0.0,google_api_key,gcp-api-key,90
+betterleaks/decode,control,T0.0,jwt,jwt,90
+betterleaks/decode,control,T0.0,slack_bot_token,slack-bot-token,90
+betterleaks/decode,control,T0.0,stripe_secret_key,stripe-access-token,90
+betterleaks/decode,encoding,T1.1,aws_access_key_id,aws-access-token,82
+betterleaks/decode,encoding,T1.1,aws_keypair,aws-access-token,85
+betterleaks/decode,encoding,T1.1,aws_keypair,generic-api-key,90
+betterleaks/decode,encoding,T1.1,aws_secret_access_key,generic-api-key,90
+betterleaks/decode,encoding,T1.1,generic_hex_token,generic-api-key,90
+betterleaks/decode,encoding,T1.1,github_pat,github-pat,90
+betterleaks/decode,encoding,T1.1,google_api_key,gcp-api-key,90
+betterleaks/decode,encoding,T1.1,google_api_key,generic-api-key,90
+betterleaks/decode,encoding,T1.1,jwt,jwt,90
+betterleaks/decode,encoding,T1.1,jwt,jwt-base64,90
+betterleaks/decode,encoding,T1.1,slack_bot_token,generic-api-key,88
+betterleaks/decode,encoding,T1.1,slack_bot_token,slack-bot-token,90
+betterleaks/decode,encoding,T1.1,stripe_secret_key,generic-api-key,90
+betterleaks/decode,encoding,T1.1,stripe_secret_key,stripe-access-token,90
+betterleaks/decode,encoding,T1.2,aws_keypair,generic-api-key,85
+betterleaks/decode,encoding,T1.2,aws_secret_access_key,generic-api-key,88
+betterleaks/decode,encoding,T1.2,generic_hex_token,generic-api-key,88
+betterleaks/decode,encoding,T1.2,google_api_key,generic-api-key,90
+betterleaks/decode,encoding,T1.2,slack_bot_token,generic-api-key,88
+betterleaks/decode,encoding,T1.2,stripe_secret_key,generic-api-key,88
+betterleaks/decode,encoding,T1.3,aws_secret_access_key,generic-api-key,1
+betterleaks/decode,encoding,T1.3,generic_hex_token,generic-api-key,2
+betterleaks/decode,encoding,T1.3,slack_bot_token,generic-api-key,4
+betterleaks/decode,encoding,T1.4,aws_access_key_id,aws-access-token,90
+betterleaks/decode,encoding,T1.4,aws_keypair,aws-access-token,90
+betterleaks/decode,encoding,T1.4,aws_keypair,generic-api-key,90
+betterleaks/decode,encoding,T1.4,aws_secret_access_key,generic-api-key,85
+betterleaks/decode,encoding,T1.4,generic_hex_token,generic-api-key,83
+betterleaks/decode,encoding,T1.4,github_pat,github-pat,90
+betterleaks/decode,encoding,T1.4,google_api_key,gcp-api-key,90
+betterleaks/decode,encoding,T1.4,google_api_key,generic-api-key,16
+betterleaks/decode,encoding,T1.4,jwt,jwt,90
+betterleaks/decode,encoding,T1.4,slack_bot_token,slack-bot-token,90
+betterleaks/decode,encoding,T1.4,stripe_secret_key,generic-api-key,5
+betterleaks/decode,encoding,T1.4,stripe_secret_key,stripe-access-token,90
+betterleaks/decode,encoding,T1.5,aws_access_key_id,aws-access-token,90
+betterleaks/decode,encoding,T1.5,aws_keypair,aws-access-token,90
+betterleaks/decode,encoding,T1.5,aws_keypair,generic-api-key,86
+betterleaks/decode,encoding,T1.5,aws_secret_access_key,generic-api-key,89
+betterleaks/decode,encoding,T1.5,generic_hex_token,generic-api-key,85
+betterleaks/decode,encoding,T1.5,github_pat,github-pat,90
+betterleaks/decode,encoding,T1.5,google_api_key,gcp-api-key,90
+betterleaks/decode,encoding,T1.5,jwt,jwt,90
+betterleaks/decode,encoding,T1.5,slack_bot_token,slack-bot-token,90
+betterleaks/decode,encoding,T1.5,stripe_secret_key,stripe-access-token,90
+betterleaks/decode,encoding,T1.6,aws_keypair,generic-api-key,88
+betterleaks/decode,encoding,T1.6,aws_secret_access_key,generic-api-key,86
+betterleaks/decode,encoding,T1.6,generic_hex_token,generic-api-key,85
+betterleaks/decode,encoding,T1.6,google_api_key,generic-api-key,89
+betterleaks/decode,encoding,T1.6,slack_bot_token,generic-api-key,90
+betterleaks/decode,encoding,T1.6,stripe_secret_key,generic-api-key,88
+betterleaks/decode,encoding,T1.7,aws_keypair,generic-api-key,86
+betterleaks/decode,encoding,T1.7,aws_secret_access_key,generic-api-key,87
+betterleaks/decode,encoding,T1.7,generic_hex_token,generic-api-key,77
+betterleaks/decode,encoding,T1.7,google_api_key,generic-api-key,86
+betterleaks/decode,encoding,T1.7,slack_bot_token,generic-api-key,87
+betterleaks/decode,encoding,T1.7,stripe_secret_key,generic-api-key,90
+betterleaks/decode,indirection,T5.1,aws_keypair,generic-api-key,30
+betterleaks/decode,indirection,T5.1,aws_secret_access_key,generic-api-key,29
+betterleaks/decode,indirection,T5.1,generic_hex_token,generic-api-key,29
+betterleaks/decode,indirection,T5.1,google_api_key,generic-api-key,30
+betterleaks/decode,indirection,T5.1,slack_bot_token,generic-api-key,30
+betterleaks/decode,indirection,T5.1,stripe_secret_key,generic-api-key,29
+betterleaks/decode,multi_encoding,T2.1,aws_access_key_id,aws-access-token,83
+betterleaks/decode,multi_encoding,T2.1,aws_keypair,aws-access-token,83
+betterleaks/decode,multi_encoding,T2.1,aws_keypair,generic-api-key,90
+betterleaks/decode,multi_encoding,T2.1,aws_secret_access_key,generic-api-key,90
+betterleaks/decode,multi_encoding,T2.1,generic_hex_token,generic-api-key,90
+betterleaks/decode,multi_encoding,T2.1,github_pat,github-pat,90
+betterleaks/decode,multi_encoding,T2.1,google_api_key,gcp-api-key,90
+betterleaks/decode,multi_encoding,T2.1,google_api_key,generic-api-key,89
+betterleaks/decode,multi_encoding,T2.1,jwt,jwt,90
+betterleaks/decode,multi_encoding,T2.1,jwt,jwt-base64,90
+betterleaks/decode,multi_encoding,T2.1,slack_bot_token,generic-api-key,90
+betterleaks/decode,multi_encoding,T2.1,slack_bot_token,slack-bot-token,90
+betterleaks/decode,multi_encoding,T2.1,stripe_secret_key,generic-api-key,90
+betterleaks/decode,multi_encoding,T2.1,stripe_secret_key,stripe-access-token,90
+betterleaks/decode,multi_encoding,T2.2,aws_access_key_id,aws-access-token,79
+betterleaks/decode,multi_encoding,T2.2,aws_keypair,aws-access-token,84
+betterleaks/decode,multi_encoding,T2.2,aws_keypair,generic-api-key,90
+betterleaks/decode,multi_encoding,T2.2,aws_secret_access_key,generic-api-key,90
+betterleaks/decode,multi_encoding,T2.2,generic_hex_token,generic-api-key,90
+betterleaks/decode,multi_encoding,T2.2,github_pat,github-pat,90
+betterleaks/decode,multi_encoding,T2.2,google_api_key,gcp-api-key,89
+betterleaks/decode,multi_encoding,T2.2,google_api_key,generic-api-key,90
+betterleaks/decode,multi_encoding,T2.2,jwt,jwt,90
+betterleaks/decode,multi_encoding,T2.2,jwt,jwt-base64,90
+betterleaks/decode,multi_encoding,T2.2,slack_bot_token,generic-api-key,90
+betterleaks/decode,multi_encoding,T2.2,slack_bot_token,slack-bot-token,90
+betterleaks/decode,multi_encoding,T2.2,stripe_secret_key,generic-api-key,90
+betterleaks/decode,multi_encoding,T2.2,stripe_secret_key,stripe-access-token,90
+betterleaks/decode,multi_encoding,T2.3,aws_access_key_id,aws-access-token,82
+betterleaks/decode,multi_encoding,T2.3,aws_keypair,aws-access-token,79
+betterleaks/decode,multi_encoding,T2.3,aws_keypair,generic-api-key,90
+betterleaks/decode,multi_encoding,T2.3,aws_secret_access_key,generic-api-key,90
+betterleaks/decode,multi_encoding,T2.3,generic_hex_token,generic-api-key,90
+betterleaks/decode,multi_encoding,T2.3,github_pat,github-pat,89
+betterleaks/decode,multi_encoding,T2.3,google_api_key,gcp-api-key,90
+betterleaks/decode,multi_encoding,T2.3,google_api_key,generic-api-key,87
+betterleaks/decode,multi_encoding,T2.3,jwt,jwt,90
+betterleaks/decode,multi_encoding,T2.3,jwt,jwt-base64,90
+betterleaks/decode,multi_encoding,T2.3,slack_bot_token,generic-api-key,89
+betterleaks/decode,multi_encoding,T2.3,slack_bot_token,slack-bot-token,90
+betterleaks/decode,multi_encoding,T2.3,stripe_secret_key,generic-api-key,90
+betterleaks/decode,multi_encoding,T2.3,stripe_secret_key,stripe-access-token,90
+betterleaks/decode,splitting,T3.1,aws_keypair,generic-api-key,7
+betterleaks/decode,splitting,T3.1,aws_secret_access_key,generic-api-key,11
+betterleaks/decode,splitting,T3.1,generic_hex_token,generic-api-key,3
+betterleaks/decode,splitting,T3.1,google_api_key,generic-api-key,5
+betterleaks/decode,splitting,T3.1,jwt,jwt,2
+betterleaks/decode,splitting,T3.1,slack_bot_token,generic-api-key,1
+betterleaks/decode,splitting,T3.1,slack_bot_token,slack-bot-token,5
+betterleaks/decode,splitting,T3.1,stripe_secret_key,generic-api-key,5
+betterleaks/decode,splitting,T3.1,stripe_secret_key,stripe-access-token,4
+betterleaks/decode,splitting,T3.2,slack_bot_token,slack-bot-token,7
+betterleaks/decode,splitting,T3.2,stripe_secret_key,stripe-access-token,2
+betterleaks/decode,splitting,T3.4,jwt,jwt,1
+betterleaks/decode,splitting,T3.4,slack_bot_token,slack-bot-token,6
+betterleaks/decode,splitting,T3.4,stripe_secret_key,stripe-access-token,1
+betterleaks/decode,splitting,T3.5,jwt,jwt,1
+betterleaks/decode,splitting,T3.5,slack_bot_token,slack-bot-token,2
+betterleaks/decode,splitting,T3.5,stripe_secret_key,stripe-access-token,1
+betterleaks/default,composition,T7.1,jwt,jwt-base64,7
+betterleaks/default,contextual,T6.1,aws_access_key_id,aws-access-token,90
+betterleaks/default,contextual,T6.1,aws_keypair,aws-access-token,90
+betterleaks/default,contextual,T6.1,github_pat,github-pat,90
+betterleaks/default,contextual,T6.1,google_api_key,gcp-api-key,90
+betterleaks/default,contextual,T6.1,jwt,jwt,90
+betterleaks/default,contextual,T6.1,slack_bot_token,slack-bot-token,90
+betterleaks/default,contextual,T6.1,stripe_secret_key,stripe-access-token,90
+betterleaks/default,contextual,T6.4,aws_access_key_id,aws-access-token,90
+betterleaks/default,contextual,T6.4,aws_keypair,aws-access-token,90
+betterleaks/default,contextual,T6.4,github_pat,github-pat,90
+betterleaks/default,contextual,T6.4,google_api_key,gcp-api-key,90
+betterleaks/default,contextual,T6.4,jwt,jwt,90
+betterleaks/default,contextual,T6.4,slack_bot_token,slack-bot-token,90
+betterleaks/default,contextual,T6.4,stripe_secret_key,stripe-access-token,90
+betterleaks/default,control,T0.0,aws_access_key_id,aws-access-token,90
+betterleaks/default,control,T0.0,aws_keypair,aws-access-token,90
+betterleaks/default,control,T0.0,aws_keypair,generic-api-key,88
+betterleaks/default,control,T0.0,aws_secret_access_key,generic-api-key,85
+betterleaks/default,control,T0.0,generic_hex_token,generic-api-key,86
+betterleaks/default,control,T0.0,github_pat,github-pat,90
+betterleaks/default,control,T0.0,google_api_key,gcp-api-key,90
+betterleaks/default,control,T0.0,jwt,jwt,90
+betterleaks/default,control,T0.0,slack_bot_token,slack-bot-token,90
+betterleaks/default,control,T0.0,stripe_secret_key,stripe-access-token,90
+betterleaks/default,encoding,T1.1,aws_keypair,generic-api-key,89
+betterleaks/default,encoding,T1.1,aws_secret_access_key,generic-api-key,88
+betterleaks/default,encoding,T1.1,generic_hex_token,generic-api-key,88
+betterleaks/default,encoding,T1.1,google_api_key,generic-api-key,90
+betterleaks/default,encoding,T1.1,jwt,jwt-base64,90
+betterleaks/default,encoding,T1.1,slack_bot_token,generic-api-key,88
+betterleaks/default,encoding,T1.1,stripe_secret_key,generic-api-key,90
+betterleaks/default,encoding,T1.2,aws_keypair,generic-api-key,85
+betterleaks/default,encoding,T1.2,aws_secret_access_key,generic-api-key,88
+betterleaks/default,encoding,T1.2,generic_hex_token,generic-api-key,88
+betterleaks/default,encoding,T1.2,google_api_key,generic-api-key,90
+betterleaks/default,encoding,T1.2,slack_bot_token,generic-api-key,88
+betterleaks/default,encoding,T1.2,stripe_secret_key,generic-api-key,88
+betterleaks/default,encoding,T1.3,aws_secret_access_key,generic-api-key,1
+betterleaks/default,encoding,T1.3,generic_hex_token,generic-api-key,2
+betterleaks/default,encoding,T1.3,slack_bot_token,generic-api-key,4
+betterleaks/default,encoding,T1.4,aws_keypair,generic-api-key,20
+betterleaks/default,encoding,T1.4,aws_secret_access_key,generic-api-key,16
+betterleaks/default,encoding,T1.4,google_api_key,generic-api-key,16
+betterleaks/default,encoding,T1.4,stripe_secret_key,generic-api-key,5
+betterleaks/default,encoding,T1.5,aws_access_key_id,aws-access-token,90
+betterleaks/default,encoding,T1.5,aws_keypair,aws-access-token,90
+betterleaks/default,encoding,T1.5,aws_keypair,generic-api-key,24
+betterleaks/default,encoding,T1.5,aws_secret_access_key,generic-api-key,24
+betterleaks/default,encoding,T1.5,generic_hex_token,generic-api-key,85
+betterleaks/default,encoding,T1.5,github_pat,github-pat,90
+betterleaks/default,encoding,T1.5,google_api_key,gcp-api-key,90
+betterleaks/default,encoding,T1.5,jwt,jwt,90
+betterleaks/default,encoding,T1.5,slack_bot_token,slack-bot-token,90
+betterleaks/default,encoding,T1.5,stripe_secret_key,stripe-access-token,90
+betterleaks/default,encoding,T1.6,aws_keypair,generic-api-key,88
+betterleaks/default,encoding,T1.6,aws_secret_access_key,generic-api-key,86
+betterleaks/default,encoding,T1.6,generic_hex_token,generic-api-key,85
+betterleaks/default,encoding,T1.6,google_api_key,generic-api-key,89
+betterleaks/default,encoding,T1.6,slack_bot_token,generic-api-key,90
+betterleaks/default,encoding,T1.6,stripe_secret_key,generic-api-key,88
+betterleaks/default,encoding,T1.7,aws_keypair,generic-api-key,86
+betterleaks/default,encoding,T1.7,aws_secret_access_key,generic-api-key,87
+betterleaks/default,encoding,T1.7,generic_hex_token,generic-api-key,77
+betterleaks/default,encoding,T1.7,google_api_key,generic-api-key,86
+betterleaks/default,encoding,T1.7,slack_bot_token,generic-api-key,87
+betterleaks/default,encoding,T1.7,stripe_secret_key,generic-api-key,90
+betterleaks/default,indirection,T5.1,aws_keypair,generic-api-key,30
+betterleaks/default,indirection,T5.1,aws_secret_access_key,generic-api-key,29
+betterleaks/default,indirection,T5.1,generic_hex_token,generic-api-key,29
+betterleaks/default,indirection,T5.1,google_api_key,generic-api-key,30
+betterleaks/default,indirection,T5.1,slack_bot_token,generic-api-key,30
+betterleaks/default,indirection,T5.1,stripe_secret_key,generic-api-key,29
+betterleaks/default,multi_encoding,T2.1,aws_keypair,generic-api-key,87
+betterleaks/default,multi_encoding,T2.1,aws_secret_access_key,generic-api-key,86
+betterleaks/default,multi_encoding,T2.1,generic_hex_token,generic-api-key,84
+betterleaks/default,multi_encoding,T2.1,google_api_key,generic-api-key,87
+betterleaks/default,multi_encoding,T2.1,slack_bot_token,generic-api-key,87
+betterleaks/default,multi_encoding,T2.1,stripe_secret_key,generic-api-key,89
+betterleaks/default,multi_encoding,T2.2,aws_keypair,generic-api-key,88
+betterleaks/default,multi_encoding,T2.2,aws_secret_access_key,generic-api-key,89
+betterleaks/default,multi_encoding,T2.2,generic_hex_token,generic-api-key,87
+betterleaks/default,multi_encoding,T2.2,google_api_key,generic-api-key,87
+betterleaks/default,multi_encoding,T2.2,slack_bot_token,generic-api-key,86
+betterleaks/default,multi_encoding,T2.2,stripe_secret_key,generic-api-key,89
+betterleaks/default,multi_encoding,T2.3,aws_keypair,generic-api-key,13
+betterleaks/default,multi_encoding,T2.3,aws_secret_access_key,generic-api-key,7
+betterleaks/default,multi_encoding,T2.3,generic_hex_token,generic-api-key,5
+betterleaks/default,multi_encoding,T2.3,google_api_key,generic-api-key,1
+betterleaks/default,multi_encoding,T2.3,slack_bot_token,generic-api-key,8
+betterleaks/default,multi_encoding,T2.3,stripe_secret_key,generic-api-key,5
+betterleaks/default,splitting,T3.1,aws_keypair,generic-api-key,7
+betterleaks/default,splitting,T3.1,aws_secret_access_key,generic-api-key,11
+betterleaks/default,splitting,T3.1,generic_hex_token,generic-api-key,3
+betterleaks/default,splitting,T3.1,google_api_key,generic-api-key,5
+betterleaks/default,splitting,T3.1,jwt,jwt,2
+betterleaks/default,splitting,T3.1,slack_bot_token,generic-api-key,1
+betterleaks/default,splitting,T3.1,slack_bot_token,slack-bot-token,5
+betterleaks/default,splitting,T3.1,stripe_secret_key,generic-api-key,5
+betterleaks/default,splitting,T3.1,stripe_secret_key,stripe-access-token,4
+betterleaks/default,splitting,T3.2,slack_bot_token,slack-bot-token,7
+betterleaks/default,splitting,T3.2,stripe_secret_key,stripe-access-token,2
+betterleaks/default,splitting,T3.4,jwt,jwt,1
+betterleaks/default,splitting,T3.4,slack_bot_token,slack-bot-token,6
+betterleaks/default,splitting,T3.4,stripe_secret_key,stripe-access-token,1
+betterleaks/default,splitting,T3.5,jwt,jwt,1
+betterleaks/default,splitting,T3.5,slack_bot_token,slack-bot-token,2
+betterleaks/default,splitting,T3.5,stripe_secret_key,stripe-access-token,1
+detect-secrets/default,char_format,T4.5,aws_keypair,Secret Keyword,88
+detect-secrets/default,char_format,T4.5,aws_secret_access_key,Secret Keyword,88
+detect-secrets/default,char_format,T4.5,google_api_key,Secret Keyword,90
+detect-secrets/default,char_format,T4.5,stripe_secret_key,Secret Keyword,90
+detect-secrets/default,contextual,T6.1,aws_access_key_id,AWS Access Key,90
+detect-secrets/default,contextual,T6.1,aws_keypair,AWS Access Key,30
+detect-secrets/default,contextual,T6.1,aws_keypair,Base64 High Entropy String,88
+detect-secrets/default,contextual,T6.1,aws_secret_access_key,Base64 High Entropy String,89
+detect-secrets/default,contextual,T6.1,generic_hex_token,Hex High Entropy String,90
+detect-secrets/default,contextual,T6.1,github_pat,Base64 High Entropy String,59
+detect-secrets/default,contextual,T6.1,github_pat,GitHub Token,90
+detect-secrets/default,contextual,T6.1,google_api_key,Base64 High Entropy String,87
+detect-secrets/default,contextual,T6.1,jwt,JSON Web Token,90
+detect-secrets/default,contextual,T6.1,slack_bot_token,Base64 High Entropy String,72
+detect-secrets/default,contextual,T6.1,stripe_secret_key,Base64 High Entropy String,56
+detect-secrets/default,contextual,T6.4,aws_access_key_id,AWS Access Key,90
+detect-secrets/default,contextual,T6.4,aws_keypair,AWS Access Key,30
+detect-secrets/default,contextual,T6.4,aws_keypair,Base64 High Entropy String,87
+detect-secrets/default,contextual,T6.4,aws_secret_access_key,Base64 High Entropy String,89
+detect-secrets/default,contextual,T6.4,generic_hex_token,Hex High Entropy String,90
+detect-secrets/default,contextual,T6.4,github_pat,Base64 High Entropy String,60
+detect-secrets/default,contextual,T6.4,github_pat,GitHub Token,90
+detect-secrets/default,contextual,T6.4,google_api_key,Base64 High Entropy String,87
+detect-secrets/default,contextual,T6.4,jwt,JSON Web Token,90
+detect-secrets/default,contextual,T6.4,slack_bot_token,Base64 High Entropy String,76
+detect-secrets/default,contextual,T6.4,stripe_secret_key,Base64 High Entropy String,50
+detect-secrets/default,control,T0.0,aws_access_key_id,AWS Access Key,90
+detect-secrets/default,control,T0.0,aws_keypair,AWS Access Key,90
+detect-secrets/default,control,T0.0,aws_keypair,Base64 High Entropy String,90
+detect-secrets/default,control,T0.0,aws_keypair,Secret Keyword,89
+detect-secrets/default,control,T0.0,aws_secret_access_key,AWS Access Key,90
+detect-secrets/default,control,T0.0,aws_secret_access_key,Base64 High Entropy String,87
+detect-secrets/default,control,T0.0,aws_secret_access_key,Secret Keyword,86
+detect-secrets/default,control,T0.0,generic_hex_token,Hex High Entropy String,90
+detect-secrets/default,control,T0.0,github_pat,Base64 High Entropy String,60
+detect-secrets/default,control,T0.0,github_pat,GitHub Token,90
+detect-secrets/default,control,T0.0,google_api_key,Base64 High Entropy String,90
+detect-secrets/default,control,T0.0,google_api_key,Secret Keyword,90
+detect-secrets/default,control,T0.0,jwt,JSON Web Token,90
+detect-secrets/default,control,T0.0,slack_bot_token,Base64 High Entropy String,74
+detect-secrets/default,control,T0.0,stripe_secret_key,Base64 High Entropy String,58
+detect-secrets/default,control,T0.0,stripe_secret_key,Secret Keyword,90
+detect-secrets/default,encoding,T1.1,aws_keypair,Base64 High Entropy String,90
+detect-secrets/default,encoding,T1.1,aws_keypair,Secret Keyword,90
+detect-secrets/default,encoding,T1.1,aws_secret_access_key,Base64 High Entropy String,90
+detect-secrets/default,encoding,T1.1,aws_secret_access_key,Secret Keyword,90
+detect-secrets/default,encoding,T1.1,generic_hex_token,Base64 High Entropy String,35
+detect-secrets/default,encoding,T1.1,github_pat,Base64 High Entropy String,90
+detect-secrets/default,encoding,T1.1,google_api_key,Base64 High Entropy String,87
+detect-secrets/default,encoding,T1.1,google_api_key,Secret Keyword,90
+detect-secrets/default,encoding,T1.1,jwt,Base64 High Entropy String,90
+detect-secrets/default,encoding,T1.1,slack_bot_token,Base64 High Entropy String,90
+detect-secrets/default,encoding,T1.1,stripe_secret_key,Base64 High Entropy String,87
+detect-secrets/default,encoding,T1.1,stripe_secret_key,Secret Keyword,90
+detect-secrets/default,encoding,T1.2,aws_keypair,Base64 High Entropy String,48
+detect-secrets/default,encoding,T1.2,aws_keypair,Secret Keyword,90
+detect-secrets/default,encoding,T1.2,aws_secret_access_key,Base64 High Entropy String,45
+detect-secrets/default,encoding,T1.2,aws_secret_access_key,Secret Keyword,90
+detect-secrets/default,encoding,T1.2,generic_hex_token,AWS Access Key,2
+detect-secrets/default,encoding,T1.2,github_pat,Base64 High Entropy String,68
+detect-secrets/default,encoding,T1.2,google_api_key,Base64 High Entropy String,64
+detect-secrets/default,encoding,T1.2,google_api_key,Secret Keyword,90
+detect-secrets/default,encoding,T1.2,jwt,Base64 High Entropy String,90
+detect-secrets/default,encoding,T1.2,slack_bot_token,AWS Access Key,8
+detect-secrets/default,encoding,T1.2,slack_bot_token,Base64 High Entropy String,88
+detect-secrets/default,encoding,T1.2,stripe_secret_key,AWS Access Key,1
+detect-secrets/default,encoding,T1.2,stripe_secret_key,Base64 High Entropy String,28
+detect-secrets/default,encoding,T1.2,stripe_secret_key,Secret Keyword,90
+detect-secrets/default,encoding,T1.3,aws_keypair,Secret Keyword,74
+detect-secrets/default,encoding,T1.3,aws_secret_access_key,Secret Keyword,80
+detect-secrets/default,encoding,T1.3,google_api_key,Secret Keyword,79
+detect-secrets/default,encoding,T1.3,stripe_secret_key,Secret Keyword,80
+detect-secrets/default,encoding,T1.4,aws_access_key_id,AWS Access Key,90
+detect-secrets/default,encoding,T1.4,aws_keypair,AWS Access Key,90
+detect-secrets/default,encoding,T1.4,aws_keypair,Hex High Entropy String,90
+detect-secrets/default,encoding,T1.4,aws_keypair,Secret Keyword,90
+detect-secrets/default,encoding,T1.4,aws_secret_access_key,Hex High Entropy String,90
+detect-secrets/default,encoding,T1.4,aws_secret_access_key,Secret Keyword,90
+detect-secrets/default,encoding,T1.4,github_pat,Hex High Entropy String,90
+detect-secrets/default,encoding,T1.4,google_api_key,Hex High Entropy String,90
+detect-secrets/default,encoding,T1.4,google_api_key,Secret Keyword,90
+detect-secrets/default,encoding,T1.4,jwt,Hex High Entropy String,90
+detect-secrets/default,encoding,T1.4,slack_bot_token,Hex High Entropy String,90
+detect-secrets/default,encoding,T1.4,stripe_secret_key,Hex High Entropy String,90
+detect-secrets/default,encoding,T1.4,stripe_secret_key,Secret Keyword,90
+detect-secrets/default,encoding,T1.5,aws_access_key_id,AWS Access Key,90
+detect-secrets/default,encoding,T1.5,aws_keypair,AWS Access Key,90
+detect-secrets/default,encoding,T1.5,aws_keypair,Base64 High Entropy String,22
+detect-secrets/default,encoding,T1.5,aws_keypair,Secret Keyword,66
+detect-secrets/default,encoding,T1.5,aws_secret_access_key,AWS Access Key,24
+detect-secrets/default,encoding,T1.5,aws_secret_access_key,Base64 High Entropy String,23
+detect-secrets/default,encoding,T1.5,aws_secret_access_key,Secret Keyword,69
+detect-secrets/default,encoding,T1.5,generic_hex_token,Hex High Entropy String,90
+detect-secrets/default,encoding,T1.5,github_pat,Base64 High Entropy String,60
+detect-secrets/default,encoding,T1.5,github_pat,GitHub Token,90
+detect-secrets/default,encoding,T1.5,google_api_key,Base64 High Entropy String,87
+detect-secrets/default,encoding,T1.5,google_api_key,Secret Keyword,90
+detect-secrets/default,encoding,T1.5,jwt,JSON Web Token,90
+detect-secrets/default,encoding,T1.5,slack_bot_token,Base64 High Entropy String,68
+detect-secrets/default,encoding,T1.5,stripe_secret_key,Base64 High Entropy String,57
+detect-secrets/default,encoding,T1.5,stripe_secret_key,Secret Keyword,90
+detect-secrets/default,encoding,T1.6,aws_keypair,AWS Access Key,90
+detect-secrets/default,encoding,T1.6,aws_keypair,Base64 High Entropy String,87
+detect-secrets/default,encoding,T1.6,aws_keypair,Secret Keyword,89
+detect-secrets/default,encoding,T1.6,aws_secret_access_key,AWS Access Key,90
+detect-secrets/default,encoding,T1.6,aws_secret_access_key,Base64 High Entropy String,88
+detect-secrets/default,encoding,T1.6,aws_secret_access_key,Secret Keyword,88
+detect-secrets/default,encoding,T1.6,github_pat,Base64 High Entropy String,89
+detect-secrets/default,encoding,T1.6,google_api_key,Base64 High Entropy String,83
+detect-secrets/default,encoding,T1.6,google_api_key,Secret Keyword,90
+detect-secrets/default,encoding,T1.6,slack_bot_token,Base64 High Entropy String,78
+detect-secrets/default,encoding,T1.6,stripe_secret_key,Base64 High Entropy String,61
+detect-secrets/default,encoding,T1.6,stripe_secret_key,Secret Keyword,90
+detect-secrets/default,encoding,T1.7,aws_keypair,Base64 High Entropy String,90
+detect-secrets/default,encoding,T1.7,aws_keypair,Secret Keyword,90
+detect-secrets/default,encoding,T1.7,aws_secret_access_key,Base64 High Entropy String,90
+detect-secrets/default,encoding,T1.7,aws_secret_access_key,Secret Keyword,90
+detect-secrets/default,encoding,T1.7,generic_hex_token,Base64 High Entropy String,90
+detect-secrets/default,encoding,T1.7,github_pat,Base64 High Entropy String,90
+detect-secrets/default,encoding,T1.7,google_api_key,Base64 High Entropy String,90
+detect-secrets/default,encoding,T1.7,google_api_key,Secret Keyword,90
+detect-secrets/default,encoding,T1.7,jwt,Base64 High Entropy String,90
+detect-secrets/default,encoding,T1.7,slack_bot_token,Base64 High Entropy String,90
+detect-secrets/default,encoding,T1.7,stripe_secret_key,Base64 High Entropy String,90
+detect-secrets/default,encoding,T1.7,stripe_secret_key,Secret Keyword,90
+detect-secrets/default,indirection,T5.1,aws_keypair,AWS Access Key,30
+detect-secrets/default,indirection,T5.1,aws_keypair,Base64 High Entropy String,30
+detect-secrets/default,indirection,T5.1,aws_keypair,Secret Keyword,30
+detect-secrets/default,indirection,T5.1,aws_secret_access_key,AWS Access Key,30
+detect-secrets/default,indirection,T5.1,aws_secret_access_key,Base64 High Entropy String,29
+detect-secrets/default,indirection,T5.1,aws_secret_access_key,Secret Keyword,29
+detect-secrets/default,indirection,T5.1,generic_hex_token,Hex High Entropy String,30
+detect-secrets/default,indirection,T5.1,github_pat,Base64 High Entropy String,30
+detect-secrets/default,indirection,T5.1,google_api_key,Base64 High Entropy String,27
+detect-secrets/default,indirection,T5.1,google_api_key,Secret Keyword,30
+detect-secrets/default,indirection,T5.1,slack_bot_token,Base64 High Entropy String,25
+detect-secrets/default,indirection,T5.1,stripe_secret_key,Base64 High Entropy String,15
+detect-secrets/default,indirection,T5.1,stripe_secret_key,Secret Keyword,30
+detect-secrets/default,multi_encoding,T2.1,aws_keypair,Base64 High Entropy String,90
+detect-secrets/default,multi_encoding,T2.1,aws_keypair,Secret Keyword,90
+detect-secrets/default,multi_encoding,T2.1,aws_secret_access_key,Base64 High Entropy String,89
+detect-secrets/default,multi_encoding,T2.1,aws_secret_access_key,Secret Keyword,90
+detect-secrets/default,multi_encoding,T2.1,generic_hex_token,Base64 High Entropy String,88
+detect-secrets/default,multi_encoding,T2.1,github_pat,Base64 High Entropy String,90
+detect-secrets/default,multi_encoding,T2.1,google_api_key,Base64 High Entropy String,89
+detect-secrets/default,multi_encoding,T2.1,google_api_key,Secret Keyword,90
+detect-secrets/default,multi_encoding,T2.1,jwt,Base64 High Entropy String,90
+detect-secrets/default,multi_encoding,T2.1,slack_bot_token,Base64 High Entropy String,90
+detect-secrets/default,multi_encoding,T2.1,stripe_secret_key,Base64 High Entropy String,90
+detect-secrets/default,multi_encoding,T2.1,stripe_secret_key,Secret Keyword,90
+detect-secrets/default,multi_encoding,T2.2,aws_keypair,Base64 High Entropy String,90
+detect-secrets/default,multi_encoding,T2.2,aws_keypair,Secret Keyword,90
+detect-secrets/default,multi_encoding,T2.2,aws_secret_access_key,Base64 High Entropy String,90
+detect-secrets/default,multi_encoding,T2.2,aws_secret_access_key,Secret Keyword,90
+detect-secrets/default,multi_encoding,T2.2,generic_hex_token,Base64 High Entropy String,90
+detect-secrets/default,multi_encoding,T2.2,github_pat,Base64 High Entropy String,90
+detect-secrets/default,multi_encoding,T2.2,google_api_key,Base64 High Entropy String,90
+detect-secrets/default,multi_encoding,T2.2,google_api_key,Secret Keyword,90
+detect-secrets/default,multi_encoding,T2.2,jwt,Base64 High Entropy String,90
+detect-secrets/default,multi_encoding,T2.2,slack_bot_token,Base64 High Entropy String,90
+detect-secrets/default,multi_encoding,T2.2,stripe_secret_key,Base64 High Entropy String,90
+detect-secrets/default,multi_encoding,T2.2,stripe_secret_key,Secret Keyword,90
+detect-secrets/default,multi_encoding,T2.3,aws_keypair,Hex High Entropy String,90
+detect-secrets/default,multi_encoding,T2.3,aws_keypair,Secret Keyword,90
+detect-secrets/default,multi_encoding,T2.3,aws_secret_access_key,Hex High Entropy String,90
+detect-secrets/default,multi_encoding,T2.3,aws_secret_access_key,Secret Keyword,90
+detect-secrets/default,multi_encoding,T2.3,generic_hex_token,Hex High Entropy String,90
+detect-secrets/default,multi_encoding,T2.3,github_pat,Hex High Entropy String,90
+detect-secrets/default,multi_encoding,T2.3,google_api_key,Hex High Entropy String,89
+detect-secrets/default,multi_encoding,T2.3,google_api_key,Secret Keyword,90
+detect-secrets/default,multi_encoding,T2.3,jwt,Hex High Entropy String,90
+detect-secrets/default,multi_encoding,T2.3,slack_bot_token,Hex High Entropy String,90
+detect-secrets/default,multi_encoding,T2.3,stripe_secret_key,Hex High Entropy String,90
+detect-secrets/default,multi_encoding,T2.3,stripe_secret_key,Secret Keyword,90
+detect-secrets/default,splitting,T3.1,aws_keypair,Base64 High Entropy String,2
+detect-secrets/default,splitting,T3.1,aws_keypair,Secret Keyword,27
+detect-secrets/default,splitting,T3.1,aws_secret_access_key,Base64 High Entropy String,1
+detect-secrets/default,splitting,T3.1,aws_secret_access_key,Secret Keyword,27
+detect-secrets/default,splitting,T3.1,generic_hex_token,Hex High Entropy String,30
+detect-secrets/default,splitting,T3.1,github_pat,Base64 High Entropy String,2
+detect-secrets/default,splitting,T3.1,google_api_key,Base64 High Entropy String,2
+detect-secrets/default,splitting,T3.1,google_api_key,Secret Keyword,28
+detect-secrets/default,splitting,T3.1,jwt,Base64 High Entropy String,5
+detect-secrets/default,splitting,T3.1,jwt,JSON Web Token,5
+detect-secrets/default,splitting,T3.1,slack_bot_token,Base64 High Entropy String,2
+detect-secrets/default,splitting,T3.1,stripe_secret_key,Secret Keyword,29
+detect-secrets/default,splitting,T3.2,aws_keypair,Base64 High Entropy String,4
+detect-secrets/default,splitting,T3.2,aws_secret_access_key,Base64 High Entropy String,2
+detect-secrets/default,splitting,T3.2,generic_hex_token,Hex High Entropy String,30
+detect-secrets/default,splitting,T3.2,github_pat,Base64 High Entropy String,2
+detect-secrets/default,splitting,T3.2,google_api_key,Base64 High Entropy String,2
+detect-secrets/default,splitting,T3.2,jwt,Base64 High Entropy String,6
+detect-secrets/default,splitting,T3.2,slack_bot_token,Base64 High Entropy String,3
+detect-secrets/default,splitting,T3.5,aws_secret_access_key,Base64 High Entropy String,1
+detect-secrets/default,splitting,T3.5,generic_hex_token,Hex High Entropy String,11
+detect-secrets/default,splitting,T3.5,github_pat,Base64 High Entropy String,1
+detect-secrets/default,splitting,T3.5,jwt,JSON Web Token,3
+gitleaks/decode,composition,T7.1,jwt,jwt,1
+gitleaks/decode,composition,T7.1,jwt,jwt-base64,7
+gitleaks/decode,composition,T7.1,slack_bot_token,slack-bot-token,1
+gitleaks/decode,composition,T7.1,stripe_secret_key,stripe-access-token,4
+gitleaks/decode,contextual,T6.1,aws_access_key_id,aws-access-token,90
+gitleaks/decode,contextual,T6.1,aws_keypair,aws-access-token,90
+gitleaks/decode,contextual,T6.1,github_pat,github-pat,90
+gitleaks/decode,contextual,T6.1,google_api_key,gcp-api-key,90
+gitleaks/decode,contextual,T6.1,jwt,jwt,90
+gitleaks/decode,contextual,T6.1,slack_bot_token,slack-bot-token,90
+gitleaks/decode,contextual,T6.1,stripe_secret_key,stripe-access-token,90
+gitleaks/decode,contextual,T6.4,aws_access_key_id,aws-access-token,90
+gitleaks/decode,contextual,T6.4,aws_keypair,aws-access-token,90
+gitleaks/decode,contextual,T6.4,github_pat,github-pat,90
+gitleaks/decode,contextual,T6.4,google_api_key,gcp-api-key,90
+gitleaks/decode,contextual,T6.4,jwt,jwt,90
+gitleaks/decode,contextual,T6.4,slack_bot_token,slack-bot-token,90
+gitleaks/decode,contextual,T6.4,stripe_secret_key,stripe-access-token,90
+gitleaks/decode,control,T0.0,aws_access_key_id,aws-access-token,90
+gitleaks/decode,control,T0.0,aws_keypair,aws-access-token,90
+gitleaks/decode,control,T0.0,aws_keypair,generic-api-key,88
+gitleaks/decode,control,T0.0,aws_secret_access_key,generic-api-key,85
+gitleaks/decode,control,T0.0,generic_hex_token,generic-api-key,86
+gitleaks/decode,control,T0.0,github_pat,github-pat,90
+gitleaks/decode,control,T0.0,google_api_key,gcp-api-key,90
+gitleaks/decode,control,T0.0,jwt,jwt,90
+gitleaks/decode,control,T0.0,slack_bot_token,slack-bot-token,90
+gitleaks/decode,control,T0.0,stripe_secret_key,stripe-access-token,90
+gitleaks/decode,encoding,T1.1,aws_access_key_id,aws-access-token,82
+gitleaks/decode,encoding,T1.1,aws_keypair,aws-access-token,85
+gitleaks/decode,encoding,T1.1,aws_keypair,generic-api-key,90
+gitleaks/decode,encoding,T1.1,aws_secret_access_key,generic-api-key,90
+gitleaks/decode,encoding,T1.1,generic_hex_token,generic-api-key,90
+gitleaks/decode,encoding,T1.1,github_pat,github-pat,90
+gitleaks/decode,encoding,T1.1,google_api_key,gcp-api-key,90
+gitleaks/decode,encoding,T1.1,google_api_key,generic-api-key,90
+gitleaks/decode,encoding,T1.1,jwt,jwt,90
+gitleaks/decode,encoding,T1.1,jwt,jwt-base64,90
+gitleaks/decode,encoding,T1.1,slack_bot_token,generic-api-key,88
+gitleaks/decode,encoding,T1.1,slack_bot_token,slack-bot-token,90
+gitleaks/decode,encoding,T1.1,stripe_secret_key,generic-api-key,90
+gitleaks/decode,encoding,T1.1,stripe_secret_key,stripe-access-token,90
+gitleaks/decode,encoding,T1.2,aws_keypair,generic-api-key,86
+gitleaks/decode,encoding,T1.2,aws_secret_access_key,generic-api-key,88
+gitleaks/decode,encoding,T1.2,generic_hex_token,generic-api-key,89
+gitleaks/decode,encoding,T1.2,google_api_key,generic-api-key,90
+gitleaks/decode,encoding,T1.2,slack_bot_token,generic-api-key,89
+gitleaks/decode,encoding,T1.2,stripe_secret_key,generic-api-key,88
+gitleaks/decode,encoding,T1.3,aws_secret_access_key,generic-api-key,1
+gitleaks/decode,encoding,T1.3,generic_hex_token,generic-api-key,2
+gitleaks/decode,encoding,T1.3,slack_bot_token,generic-api-key,4
+gitleaks/decode,encoding,T1.4,aws_access_key_id,aws-access-token,90
+gitleaks/decode,encoding,T1.4,aws_keypair,aws-access-token,90
+gitleaks/decode,encoding,T1.4,aws_keypair,generic-api-key,90
+gitleaks/decode,encoding,T1.4,aws_secret_access_key,generic-api-key,86
+gitleaks/decode,encoding,T1.4,generic_hex_token,generic-api-key,83
+gitleaks/decode,encoding,T1.4,github_pat,github-pat,90
+gitleaks/decode,encoding,T1.4,google_api_key,gcp-api-key,90
+gitleaks/decode,encoding,T1.4,google_api_key,generic-api-key,16
+gitleaks/decode,encoding,T1.4,jwt,jwt,90
+gitleaks/decode,encoding,T1.4,slack_bot_token,slack-bot-token,90
+gitleaks/decode,encoding,T1.4,stripe_secret_key,generic-api-key,5
+gitleaks/decode,encoding,T1.4,stripe_secret_key,stripe-access-token,90
+gitleaks/decode,encoding,T1.5,aws_access_key_id,aws-access-token,90
+gitleaks/decode,encoding,T1.5,aws_keypair,aws-access-token,90
+gitleaks/decode,encoding,T1.5,aws_keypair,generic-api-key,87
+gitleaks/decode,encoding,T1.5,aws_secret_access_key,generic-api-key,89
+gitleaks/decode,encoding,T1.5,generic_hex_token,generic-api-key,85
+gitleaks/decode,encoding,T1.5,github_pat,github-pat,90
+gitleaks/decode,encoding,T1.5,google_api_key,gcp-api-key,90
+gitleaks/decode,encoding,T1.5,jwt,jwt,90
+gitleaks/decode,encoding,T1.5,slack_bot_token,slack-bot-token,90
+gitleaks/decode,encoding,T1.5,stripe_secret_key,stripe-access-token,90
+gitleaks/decode,encoding,T1.6,aws_keypair,generic-api-key,88
+gitleaks/decode,encoding,T1.6,aws_secret_access_key,generic-api-key,86
+gitleaks/decode,encoding,T1.6,generic_hex_token,generic-api-key,85
+gitleaks/decode,encoding,T1.6,google_api_key,generic-api-key,89
+gitleaks/decode,encoding,T1.6,slack_bot_token,generic-api-key,90
+gitleaks/decode,encoding,T1.6,stripe_secret_key,generic-api-key,88
+gitleaks/decode,encoding,T1.7,aws_keypair,generic-api-key,87
+gitleaks/decode,encoding,T1.7,aws_secret_access_key,generic-api-key,88
+gitleaks/decode,encoding,T1.7,generic_hex_token,generic-api-key,88
+gitleaks/decode,encoding,T1.7,google_api_key,generic-api-key,87
+gitleaks/decode,encoding,T1.7,slack_bot_token,generic-api-key,88
+gitleaks/decode,encoding,T1.7,stripe_secret_key,generic-api-key,90
+gitleaks/decode,indirection,T5.1,aws_keypair,generic-api-key,30
+gitleaks/decode,indirection,T5.1,aws_secret_access_key,generic-api-key,29
+gitleaks/decode,indirection,T5.1,generic_hex_token,generic-api-key,29
+gitleaks/decode,indirection,T5.1,google_api_key,generic-api-key,30
+gitleaks/decode,indirection,T5.1,slack_bot_token,generic-api-key,30
+gitleaks/decode,indirection,T5.1,stripe_secret_key,generic-api-key,29
+gitleaks/decode,multi_encoding,T2.1,aws_access_key_id,aws-access-token,83
+gitleaks/decode,multi_encoding,T2.1,aws_keypair,aws-access-token,83
+gitleaks/decode,multi_encoding,T2.1,aws_keypair,generic-api-key,90
+gitleaks/decode,multi_encoding,T2.1,aws_secret_access_key,generic-api-key,90
+gitleaks/decode,multi_encoding,T2.1,generic_hex_token,generic-api-key,90
+gitleaks/decode,multi_encoding,T2.1,github_pat,github-pat,90
+gitleaks/decode,multi_encoding,T2.1,google_api_key,gcp-api-key,90
+gitleaks/decode,multi_encoding,T2.1,google_api_key,generic-api-key,90
+gitleaks/decode,multi_encoding,T2.1,jwt,jwt,90
+gitleaks/decode,multi_encoding,T2.1,jwt,jwt-base64,90
+gitleaks/decode,multi_encoding,T2.1,slack_bot_token,generic-api-key,90
+gitleaks/decode,multi_encoding,T2.1,slack_bot_token,slack-bot-token,90
+gitleaks/decode,multi_encoding,T2.1,stripe_secret_key,generic-api-key,90
+gitleaks/decode,multi_encoding,T2.1,stripe_secret_key,stripe-access-token,90
+gitleaks/decode,multi_encoding,T2.2,aws_access_key_id,aws-access-token,79
+gitleaks/decode,multi_encoding,T2.2,aws_keypair,aws-access-token,84
+gitleaks/decode,multi_encoding,T2.2,aws_keypair,generic-api-key,90
+gitleaks/decode,multi_encoding,T2.2,aws_secret_access_key,generic-api-key,90
+gitleaks/decode,multi_encoding,T2.2,generic_hex_token,generic-api-key,90
+gitleaks/decode,multi_encoding,T2.2,github_pat,github-pat,90
+gitleaks/decode,multi_encoding,T2.2,google_api_key,gcp-api-key,89
+gitleaks/decode,multi_encoding,T2.2,google_api_key,generic-api-key,90
+gitleaks/decode,multi_encoding,T2.2,jwt,jwt,90
+gitleaks/decode,multi_encoding,T2.2,jwt,jwt-base64,90
+gitleaks/decode,multi_encoding,T2.2,slack_bot_token,generic-api-key,90
+gitleaks/decode,multi_encoding,T2.2,slack_bot_token,slack-bot-token,90
+gitleaks/decode,multi_encoding,T2.2,stripe_secret_key,generic-api-key,90
+gitleaks/decode,multi_encoding,T2.2,stripe_secret_key,stripe-access-token,90
+gitleaks/decode,multi_encoding,T2.3,aws_access_key_id,aws-access-token,82
+gitleaks/decode,multi_encoding,T2.3,aws_keypair,aws-access-token,79
+gitleaks/decode,multi_encoding,T2.3,aws_keypair,generic-api-key,90
+gitleaks/decode,multi_encoding,T2.3,aws_secret_access_key,generic-api-key,90
+gitleaks/decode,multi_encoding,T2.3,generic_hex_token,generic-api-key,90
+gitleaks/decode,multi_encoding,T2.3,github_pat,github-pat,89
+gitleaks/decode,multi_encoding,T2.3,google_api_key,gcp-api-key,90
+gitleaks/decode,multi_encoding,T2.3,google_api_key,generic-api-key,87
+gitleaks/decode,multi_encoding,T2.3,jwt,jwt,90
+gitleaks/decode,multi_encoding,T2.3,jwt,jwt-base64,90
+gitleaks/decode,multi_encoding,T2.3,slack_bot_token,generic-api-key,89
+gitleaks/decode,multi_encoding,T2.3,slack_bot_token,slack-bot-token,90
+gitleaks/decode,multi_encoding,T2.3,stripe_secret_key,generic-api-key,90
+gitleaks/decode,multi_encoding,T2.3,stripe_secret_key,stripe-access-token,90
+gitleaks/decode,splitting,T3.1,aws_keypair,generic-api-key,7
+gitleaks/decode,splitting,T3.1,aws_secret_access_key,generic-api-key,11
+gitleaks/decode,splitting,T3.1,generic_hex_token,generic-api-key,3
+gitleaks/decode,splitting,T3.1,google_api_key,generic-api-key,5
+gitleaks/decode,splitting,T3.1,jwt,jwt,2
+gitleaks/decode,splitting,T3.1,slack_bot_token,generic-api-key,1
+gitleaks/decode,splitting,T3.1,slack_bot_token,slack-bot-token,5
+gitleaks/decode,splitting,T3.1,stripe_secret_key,generic-api-key,5
+gitleaks/decode,splitting,T3.1,stripe_secret_key,stripe-access-token,4
+gitleaks/decode,splitting,T3.2,slack_bot_token,slack-bot-token,7
+gitleaks/decode,splitting,T3.2,stripe_secret_key,stripe-access-token,2
+gitleaks/decode,splitting,T3.4,jwt,jwt,1
+gitleaks/decode,splitting,T3.4,slack_bot_token,slack-bot-token,6
+gitleaks/decode,splitting,T3.4,stripe_secret_key,stripe-access-token,1
+gitleaks/decode,splitting,T3.5,jwt,jwt,1
+gitleaks/decode,splitting,T3.5,slack_bot_token,slack-bot-token,2
+gitleaks/decode,splitting,T3.5,stripe_secret_key,stripe-access-token,1
+gitleaks/default,composition,T7.1,jwt,jwt-base64,7
+gitleaks/default,contextual,T6.1,aws_access_key_id,aws-access-token,90
+gitleaks/default,contextual,T6.1,aws_keypair,aws-access-token,90
+gitleaks/default,contextual,T6.1,github_pat,github-pat,90
+gitleaks/default,contextual,T6.1,google_api_key,gcp-api-key,90
+gitleaks/default,contextual,T6.1,jwt,jwt,90
+gitleaks/default,contextual,T6.1,slack_bot_token,slack-bot-token,90
+gitleaks/default,contextual,T6.1,stripe_secret_key,stripe-access-token,90
+gitleaks/default,contextual,T6.4,aws_access_key_id,aws-access-token,90
+gitleaks/default,contextual,T6.4,aws_keypair,aws-access-token,90
+gitleaks/default,contextual,T6.4,github_pat,github-pat,90
+gitleaks/default,contextual,T6.4,google_api_key,gcp-api-key,90
+gitleaks/default,contextual,T6.4,jwt,jwt,90
+gitleaks/default,contextual,T6.4,slack_bot_token,slack-bot-token,90
+gitleaks/default,contextual,T6.4,stripe_secret_key,stripe-access-token,90
+gitleaks/default,control,T0.0,aws_access_key_id,aws-access-token,90
+gitleaks/default,control,T0.0,aws_keypair,aws-access-token,90
+gitleaks/default,control,T0.0,aws_keypair,generic-api-key,88
+gitleaks/default,control,T0.0,aws_secret_access_key,generic-api-key,85
+gitleaks/default,control,T0.0,generic_hex_token,generic-api-key,86
+gitleaks/default,control,T0.0,github_pat,github-pat,90
+gitleaks/default,control,T0.0,google_api_key,gcp-api-key,90
+gitleaks/default,control,T0.0,jwt,jwt,90
+gitleaks/default,control,T0.0,slack_bot_token,slack-bot-token,90
+gitleaks/default,control,T0.0,stripe_secret_key,stripe-access-token,90
+gitleaks/default,encoding,T1.1,aws_keypair,generic-api-key,89
+gitleaks/default,encoding,T1.1,aws_secret_access_key,generic-api-key,88
+gitleaks/default,encoding,T1.1,generic_hex_token,generic-api-key,88
+gitleaks/default,encoding,T1.1,google_api_key,generic-api-key,90
+gitleaks/default,encoding,T1.1,jwt,jwt-base64,90
+gitleaks/default,encoding,T1.1,slack_bot_token,generic-api-key,88
+gitleaks/default,encoding,T1.1,stripe_secret_key,generic-api-key,90
+gitleaks/default,encoding,T1.2,aws_keypair,generic-api-key,86
+gitleaks/default,encoding,T1.2,aws_secret_access_key,generic-api-key,88
+gitleaks/default,encoding,T1.2,generic_hex_token,generic-api-key,89
+gitleaks/default,encoding,T1.2,google_api_key,generic-api-key,90
+gitleaks/default,encoding,T1.2,slack_bot_token,generic-api-key,89
+gitleaks/default,encoding,T1.2,stripe_secret_key,generic-api-key,88
+gitleaks/default,encoding,T1.3,aws_secret_access_key,generic-api-key,1
+gitleaks/default,encoding,T1.3,generic_hex_token,generic-api-key,2
+gitleaks/default,encoding,T1.3,slack_bot_token,generic-api-key,4
+gitleaks/default,encoding,T1.4,aws_keypair,generic-api-key,20
+gitleaks/default,encoding,T1.4,aws_secret_access_key,generic-api-key,16
+gitleaks/default,encoding,T1.4,google_api_key,generic-api-key,16
+gitleaks/default,encoding,T1.4,stripe_secret_key,generic-api-key,5
+gitleaks/default,encoding,T1.5,aws_access_key_id,aws-access-token,90
+gitleaks/default,encoding,T1.5,aws_keypair,aws-access-token,90
+gitleaks/default,encoding,T1.5,aws_keypair,generic-api-key,24
+gitleaks/default,encoding,T1.5,aws_secret_access_key,generic-api-key,24
+gitleaks/default,encoding,T1.5,generic_hex_token,generic-api-key,85
+gitleaks/default,encoding,T1.5,github_pat,github-pat,90
+gitleaks/default,encoding,T1.5,google_api_key,gcp-api-key,90
+gitleaks/default,encoding,T1.5,jwt,jwt,90
+gitleaks/default,encoding,T1.5,slack_bot_token,slack-bot-token,90
+gitleaks/default,encoding,T1.5,stripe_secret_key,stripe-access-token,90
+gitleaks/default,encoding,T1.6,aws_keypair,generic-api-key,88
+gitleaks/default,encoding,T1.6,aws_secret_access_key,generic-api-key,86
+gitleaks/default,encoding,T1.6,generic_hex_token,generic-api-key,85
+gitleaks/default,encoding,T1.6,google_api_key,generic-api-key,89
+gitleaks/default,encoding,T1.6,slack_bot_token,generic-api-key,90
+gitleaks/default,encoding,T1.6,stripe_secret_key,generic-api-key,88
+gitleaks/default,encoding,T1.7,aws_keypair,generic-api-key,87
+gitleaks/default,encoding,T1.7,aws_secret_access_key,generic-api-key,88
+gitleaks/default,encoding,T1.7,generic_hex_token,generic-api-key,88
+gitleaks/default,encoding,T1.7,google_api_key,generic-api-key,87
+gitleaks/default,encoding,T1.7,slack_bot_token,generic-api-key,88
+gitleaks/default,encoding,T1.7,stripe_secret_key,generic-api-key,90
+gitleaks/default,indirection,T5.1,aws_keypair,generic-api-key,30
+gitleaks/default,indirection,T5.1,aws_secret_access_key,generic-api-key,29
+gitleaks/default,indirection,T5.1,generic_hex_token,generic-api-key,29
+gitleaks/default,indirection,T5.1,google_api_key,generic-api-key,30
+gitleaks/default,indirection,T5.1,slack_bot_token,generic-api-key,30
+gitleaks/default,indirection,T5.1,stripe_secret_key,generic-api-key,29
+gitleaks/default,multi_encoding,T2.1,aws_keypair,generic-api-key,87
+gitleaks/default,multi_encoding,T2.1,aws_secret_access_key,generic-api-key,87
+gitleaks/default,multi_encoding,T2.1,generic_hex_token,generic-api-key,86
+gitleaks/default,multi_encoding,T2.1,google_api_key,generic-api-key,88
+gitleaks/default,multi_encoding,T2.1,slack_bot_token,generic-api-key,89
+gitleaks/default,multi_encoding,T2.1,stripe_secret_key,generic-api-key,90
+gitleaks/default,multi_encoding,T2.2,aws_keypair,generic-api-key,89
+gitleaks/default,multi_encoding,T2.2,aws_secret_access_key,generic-api-key,89
+gitleaks/default,multi_encoding,T2.2,generic_hex_token,generic-api-key,87
+gitleaks/default,multi_encoding,T2.2,google_api_key,generic-api-key,87
+gitleaks/default,multi_encoding,T2.2,slack_bot_token,generic-api-key,86
+gitleaks/default,multi_encoding,T2.2,stripe_secret_key,generic-api-key,89
+gitleaks/default,multi_encoding,T2.3,aws_keypair,generic-api-key,13
+gitleaks/default,multi_encoding,T2.3,aws_secret_access_key,generic-api-key,7
+gitleaks/default,multi_encoding,T2.3,generic_hex_token,generic-api-key,5
+gitleaks/default,multi_encoding,T2.3,google_api_key,generic-api-key,1
+gitleaks/default,multi_encoding,T2.3,slack_bot_token,generic-api-key,8
+gitleaks/default,multi_encoding,T2.3,stripe_secret_key,generic-api-key,5
+gitleaks/default,splitting,T3.1,aws_keypair,generic-api-key,7
+gitleaks/default,splitting,T3.1,aws_secret_access_key,generic-api-key,11
+gitleaks/default,splitting,T3.1,generic_hex_token,generic-api-key,3
+gitleaks/default,splitting,T3.1,google_api_key,generic-api-key,5
+gitleaks/default,splitting,T3.1,jwt,jwt,2
+gitleaks/default,splitting,T3.1,slack_bot_token,generic-api-key,1
+gitleaks/default,splitting,T3.1,slack_bot_token,slack-bot-token,5
+gitleaks/default,splitting,T3.1,stripe_secret_key,generic-api-key,5
+gitleaks/default,splitting,T3.1,stripe_secret_key,stripe-access-token,4
+gitleaks/default,splitting,T3.2,slack_bot_token,slack-bot-token,7
+gitleaks/default,splitting,T3.2,stripe_secret_key,stripe-access-token,2
+gitleaks/default,splitting,T3.4,jwt,jwt,1
+gitleaks/default,splitting,T3.4,slack_bot_token,slack-bot-token,6
+gitleaks/default,splitting,T3.4,stripe_secret_key,stripe-access-token,1
+gitleaks/default,splitting,T3.5,jwt,jwt,1
+gitleaks/default,splitting,T3.5,slack_bot_token,slack-bot-token,2
+gitleaks/default,splitting,T3.5,stripe_secret_key,stripe-access-token,1
+trufflehog/default,composition,T7.1,slack_bot_token,Slack,1
+trufflehog/default,contextual,T6.1,aws_keypair,AWS,90
+trufflehog/default,contextual,T6.1,github_pat,Github,89
+trufflehog/default,contextual,T6.1,slack_bot_token,Slack,90
+trufflehog/default,contextual,T6.1,stripe_secret_key,Stripe,90
+trufflehog/default,contextual,T6.4,aws_keypair,AWS,90
+trufflehog/default,contextual,T6.4,github_pat,Github,88
+trufflehog/default,contextual,T6.4,slack_bot_token,Slack,90
+trufflehog/default,contextual,T6.4,stripe_secret_key,Stripe,90
+trufflehog/default,control,T0.0,aws_keypair,AWS,90
+trufflehog/default,control,T0.0,github_pat,Github,90
+trufflehog/default,control,T0.0,slack_bot_token,Slack,89
+trufflehog/default,control,T0.0,stripe_secret_key,Stripe,90
+trufflehog/default,encoding,T1.1,aws_keypair,AWS,89
+trufflehog/default,encoding,T1.1,github_pat,Github,89
+trufflehog/default,encoding,T1.1,google_api_key,GoogleGeminiAPIKey,1
+trufflehog/default,encoding,T1.1,slack_bot_token,Slack,90
+trufflehog/default,encoding,T1.1,stripe_secret_key,Stripe,90
+trufflehog/default,encoding,T1.2,aws_access_key_id,Wit,60
+trufflehog/default,encoding,T1.2,aws_keypair,Wit,60
+trufflehog/default,encoding,T1.5,aws_keypair,AWS,90
+trufflehog/default,encoding,T1.5,github_pat,Github,90
+trufflehog/default,encoding,T1.5,slack_bot_token,Slack,90
+trufflehog/default,encoding,T1.5,stripe_secret_key,Stripe,90
+trufflehog/default,multi_encoding,T2.1,aws_keypair,AWS,90
+trufflehog/default,multi_encoding,T2.1,github_pat,Github,88
+trufflehog/default,multi_encoding,T2.1,slack_bot_token,Slack,90
+trufflehog/default,multi_encoding,T2.1,stripe_secret_key,Stripe,90
+trufflehog/default,multi_encoding,T2.2,aws_keypair,AWS,90
+trufflehog/default,multi_encoding,T2.2,github_pat,Github,90
+trufflehog/default,multi_encoding,T2.2,slack_bot_token,Slack,90
+trufflehog/default,multi_encoding,T2.2,stripe_secret_key,Stripe,90
+trufflehog/default,splitting,T3.1,slack_bot_token,Slack,5
+trufflehog/default,splitting,T3.2,slack_bot_token,Slack,7
+trufflehog/default,splitting,T3.4,slack_bot_token,Slack,6
+trufflehog/default,splitting,T3.5,slack_bot_token,Slack,2

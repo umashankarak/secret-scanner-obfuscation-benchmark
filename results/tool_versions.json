@@ -1,5 +1,6 @@
 {
   "gitleaks": "8.28.0",
   "betterleaks": "1.1.1",
-  "trufflehog": "3.95.8"
+  "trufflehog": "trufflehog: error: expected command but got \"version\", try --help",
+  "detect-secrets": "usage: detect-secrets [-h] [-v] [--version] [-C <path>] [-c NUM_CORES]"
 }
