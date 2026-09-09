@@ -1,6 +1,6 @@
 # Secret-scanner obfuscation-robustness benchmark
 # ------------------------------------------------
-# Pins the three scanners of the starter slice + the harness/generator so the
+# Pins the four scanners + the harness/generator so the
 # study is reproducible. Rebuild = same tool versions = same numbers.
 #
 # Build:
@@ -20,6 +20,7 @@ FROM python:3.12-slim
 ARG GITLEAKS_VERSION=8.28.0
 ARG BETTERLEAKS_VERSION=1.1.1
 ARG TRUFFLEHOG_VERSION=3.95.8          # <-- verify against current release, then pin
+ARG DETECT_SECRETS_VERSION=1.5.0
 
 ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get update && apt-get install -y --no-install-recommends \
@@ -45,12 +46,18 @@ RUN curl -sSfL https://raw.githubusercontent.com/trufflesecurity/trufflehog/main
       | sh -s -- -b /usr/local/bin "v${TRUFFLEHOG_VERSION}" \
     && trufflehog --version
 
+# --- detect-secrets (Yelp; plugin-based: provider regexes + keyword + entropy) ---
+# Revision: third independent detection lineage, not derived from Gitleaks or TruffleHog.
+RUN pip install --no-cache-dir "detect-secrets==${DETECT_SECRETS_VERSION}" \
+    && detect-secrets --version
+
 WORKDIR /work
 COPY obfuscation_corpus_generator.py harness.py ./
 
 # Record the pinned versions inside the image for provenance
 RUN { echo "gitleaks=$(gitleaks version 2>&1 | head -1)"; \
       echo "betterleaks=$(betterleaks version 2>&1 | head -1)"; \
-      echo "trufflehog=$(trufflehog --version 2>&1 | head -1)"; } > /work/TOOL_VERSIONS.txt
+      echo "trufflehog=$(trufflehog --version 2>&1 | head -1)"; \
+      echo "detect-secrets=$(detect-secrets --version 2>&1 | head -1)"; } > /work/TOOL_VERSIONS.txt
 
 CMD ["bash"]

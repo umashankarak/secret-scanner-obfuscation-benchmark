@@ -4,8 +4,8 @@ This repository contains the corpus generator, evaluation harness, analysis
 scripts, and released artifacts for the paper *"Hiding in Plain Sight: A
 Taxonomy and Benchmark for the Obfuscation Robustness of Secret Scanners."*
 
-The benchmark measures how well secret scanners (Gitleaks, Betterleaks, and
-TruffleHog) detect credentials that have been deliberately **obfuscated** —
+The benchmark measures how well secret scanners (Gitleaks, Betterleaks,
+TruffleHog, and detect-secrets) detect credentials that have been deliberately **obfuscated** —
 encoded, split, character-manipulated, and so on — while remaining recoverable
 at run time. All secrets used are **synthetic and non-functional**; no real
 credentials are collected, stored, or distributed.
@@ -96,6 +96,31 @@ compare them against the committed `results/`.
 **Apple Silicon / ARM hosts:** the pinned scanner binaries are `linux/amd64`, so
 add `--platform linux/amd64` to both the `docker build` and `docker run`
 commands. On native x86-64 hosts this flag is not needed.
+
+### Revision (v2) — what changed and how to reproduce it
+
+Changes made for the IEEE Access resubmission:
+
+- **Generator fix.** Synthetic AWS access key IDs previously used the full
+  `[A-Z0-9]` alphabet; real key IDs use the base32 alphabet `[A-Z2-7]`, which
+  scanner rules encode. The v1 keys were therefore not format-valid and matched
+  only by chance (~15%). Fixed; all results regenerated.
+- **Fourth scanner.** `detect-secrets` (Yelp) added as an independent lineage.
+- **Rule attribution.** `results/detected_by_rule.csv` records which rule or
+  plugin produced each match, so per-transformation results can be explained.
+- **Timing.** `results/run_timing.json` records wall-clock scan time per run.
+- **Extended analysis.** `analyze.py` now also writes bootstrap 95% CIs
+  (`retention_ci.csv`), robustness-index variants (`robustness_index_variants.csv`),
+  per-transformation / per-carrier / per-type tables, auditable per-type
+  ceilings, and raw rates. `--min-ceiling` applies a coverage threshold.
+- **Multiple seeds.** `./run_multiseed.sh` regenerates the corpus under seeds
+  1337 (primary) 2024 4242 7331 9001, scans each, and writes cross-seed
+  mean/SD to `out/multiseed/`.
+
+```bash
+./run_multiseed.sh                       # builds image, ~5 seeds x 6 runs
+# primary results (seed 1337) -> results/ ; cross-seed summary -> out/multiseed/
+```
 
 ### Option C — run natively without Docker (optional)
 

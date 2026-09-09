@@ -87,7 +87,7 @@ def load_matrix(results: Path):
 def run_order(runs):
     """Stable, readable ordering of run keys."""
     pref = ["gitleaks/default", "gitleaks/decode", "betterleaks/default",
-            "betterleaks/decode", "trufflehog/default"]
+            "betterleaks/decode", "trufflehog/default", "detect-secrets/default"]
     return [r for r in pref if r in runs] + [r for r in runs if r not in pref]
 
 
@@ -201,18 +201,23 @@ def fig_depth(matrix, out: Path):
             agg[r][d][1] += 1
             agg[r][d][0] += int(row[r])
     fig, ax = plt.subplots(figsize=(6.4, 3.8))
-    styles = {"gitleaks/default": (OI["grey"], "o", "-"),
-              "gitleaks/decode": (OI["blue"], "o", "-"),
-              "betterleaks/decode": (OI["green"], "s", "--"),
-              "trufflehog/default": (OI["vermillion"], "^", "-")}
+    # Gitleaks and Betterleaks are near-coincident; distinct markers, dash
+    # patterns, and a small horizontal offset keep both series readable.
+    styles = {"gitleaks/default":      (OI["grey"],       "o", "-",  -0.04),
+              "betterleaks/default":   (OI["orange"],     "s", "--", +0.04),
+              "gitleaks/decode":       (OI["blue"],       "o", "-",  -0.04),
+              "betterleaks/decode":    (OI["green"],      "s", "--", +0.04),
+              "trufflehog/default":    (OI["vermillion"], "^", "-",   0.0),
+              "detect-secrets/default": (OI["purple"],    "d", ":",   0.0)}
     for r in runs:
         ys = [100 * agg[r][d][0] / agg[r][d][1] if agg[r][d][1] else 0 for d in (1, 2, 3)]
-        color, marker, ls = styles.get(r, (OI["purple"], "d", ":"))
-        ax.plot([1, 2, 3], ys, marker=marker, ls=ls, color=color, label=r, lw=2)
+        color, marker, ls, dx = styles.get(r, (OI["purple"], "d", ":", 0.0))
+        ax.plot([1 + dx, 2 + dx, 3 + dx], ys, marker=marker, ls=ls, color=color,
+                label=r, lw=2, markersize=7, markerfacecolor="white", markeredgewidth=2)
     ax.set_xticks([1, 2, 3])
     ax.set_xticklabels(["x1 (single)", "x2 (double)", "x3 (triple)"])
     ax.set_xlabel("Base64 encoding depth")
-    ax.set_ylabel("detection rate (%)")
+    ax.set_ylabel("raw detection rate (%), multi-encoding family")
     ax.set_ylim(-3, 105)
     ax.set_title("Detection vs multi-encoding depth")
     ax.legend(frameon=False, fontsize=8)

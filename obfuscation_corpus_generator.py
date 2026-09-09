@@ -54,6 +54,11 @@ from typing import Callable, Dict, List, Set, Tuple
 # ---------------------------------------------------------------------------
 _ALNUM = string.ascii_letters + string.digits
 _UPPER_NUM = string.ascii_uppercase + string.digits
+# AWS access key IDs use the RFC 4648 base32 alphabet (A-Z, 2-7): the digits
+# 0, 1, 8 and 9 never occur. Scanner rules encode this ([A-Z2-7]{16}), so a
+# synthetic key drawn from the full alphanumeric set is NOT format-valid and
+# only matches by chance ((32/36)^16 ~ 15%). Fixed in the revision (v2 corpus).
+_AWS_B32 = string.ascii_uppercase + "234567"
 _B64ISH = string.ascii_letters + string.digits + "+/"
 _URLSAFE = string.ascii_letters + string.digits + "-_"
 _HEX = "0123456789abcdef"
@@ -77,8 +82,8 @@ def _b64url_nopad(raw: bytes) -> str:
 
 
 @secret_factory("aws_access_key_id")
-def _aws_akid(rng):            # AKIA + 16 upper/digits
-    return "AKIA" + _rand(_UPPER_NUM, 16, rng)
+def _aws_akid(rng):            # AKIA + 16 chars from the base32 alphabet
+    return "AKIA" + _rand(_AWS_B32, 16, rng)
 
 
 @secret_factory("aws_secret_access_key")

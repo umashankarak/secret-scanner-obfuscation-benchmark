@@ -37,6 +37,7 @@ import argparse
 import csv
 import json
 import subprocess
+import time
 import sys
 from collections import defaultdict
 from dataclasses import dataclass, field
@@ -75,6 +76,9 @@ DEFAULT_RUNS: List[RunSpec] = [
     RunSpec("betterleaks", "default", "betterleaks", {"decode_depth": 0}),
     RunSpec("betterleaks", "decode",  "betterleaks", {"decode_depth": 4}),
     RunSpec("trufflehog",  "default", "trufflehog",  {}),
+    # Revision: a third independent detection lineage (plugin-based, Yelp). Not
+    # derived from Gitleaks or TruffleHog; Base64/Hex high-entropy plugins on.
+    RunSpec("detect-secrets", "default", "detect-secrets", {}),
 ]
 
 
@@ -122,6 +126,31 @@ def parse_trufflehog(stdout_text: str, scanner: str, config: str) -> List[Findin
     return out
 
 
+def parse_detect_secrets(stdout_text: str, scanner: str, config: str) -> List[Finding]:
+    """detect-secrets scan --all-files: one JSON object; results maps a file path
+    (relative to the scan cwd) to a list of {type, line_number, hashed_secret}.
+    Secrets are hashed, so matching is line-based only (the harness's primary
+    criterion); value fallback is unavailable for this tool."""
+    if not stdout_text.strip():
+        return []
+    try:
+        data = json.loads(stdout_text)
+    except json.JSONDecodeError:
+        return []
+    out: List[Finding] = []
+    for path, items in (data.get("results") or {}).items():
+        for d in items:
+            out.append(Finding(
+                file=path,
+                line=d.get("line_number"),
+                rule_id=d.get("type", ""),
+                matched="",
+                scanner=scanner,
+                config=config,
+            ))
+    return out
+
+
 # ---------------------------------------------------------------------------
 # Runners  (shell out to the real binaries)
 # ---------------------------------------------------------------------------
@@ -164,11 +193,21 @@ def run_trufflehog(spec: RunSpec, corpus: Path, workdir: Path) -> List[Finding]:
     return parse_trufflehog(r.stdout, spec.scanner, spec.config)
 
 
+def run_detect_secrets(spec: RunSpec, corpus: Path, workdir: Path) -> List[Finding]:
+    # Run with cwd=corpus so reported paths are relative to the scan root.
+    cmd = [spec.binary, "scan", "--all-files", "."]
+    r = subprocess.run(cmd, capture_output=True, text=True, timeout=3600, cwd=str(corpus))
+    (workdir / "detect-secrets_default.json").write_text(r.stdout, encoding="utf-8")
+    return parse_detect_secrets(r.stdout, spec.scanner, spec.config)
+
+
 def run_spec(spec: RunSpec, corpus: Path, workdir: Path) -> List[Finding]:
     if spec.scanner in ("gitleaks", "betterleaks"):
         return run_gitleaks_family(spec, corpus, workdir)
     if spec.scanner == "trufflehog":
         return run_trufflehog(spec, corpus, workdir)
+    if spec.scanner == "detect-secrets":
+        return run_detect_secrets(spec, corpus, workdir)
     raise ValueError(f"unknown scanner: {spec.scanner}")
 
 
@@ -212,12 +251,12 @@ def _entry_targets(entry: dict):
     return want_lines, want_values
 
 
-def is_detected(entry: dict, by_file: Dict[str, List[Finding]]) -> bool:
+def matching_rules(entry: dict, by_file: Dict[str, List[Finding]]) -> List[str]:
     """
-    A sample is 'detected' if some finding IN ITS FILE lands on an expected line
-    or its captured text matches a planted secret value. Composite secrets
-    (aws_keypair) count as detected if the scanner flags ANY component.
-    `by_file` is the per-run index from index_findings().
+    Return the rule ids of every finding IN THE SAMPLE'S FILE that lands on an
+    expected line or whose captured text matches a planted secret value.
+    Composite secrets (aws_keypair) match if the scanner flags ANY component.
+    Empty list = not detected. `by_file` is the per-run index from index_findings().
     """
     want_file = entry["file"].replace("\\", "/")
     want_lines, want_values = _entry_targets(entry)
@@ -227,14 +266,20 @@ def is_detected(entry: dict, by_file: Dict[str, List[Finding]]) -> bool:
         candidates = [f for rel, fs in by_file.items()
                       if rel.endswith(want_file) or want_file.endswith(rel)
                       for f in fs]
+    rules: List[str] = []
     for f in candidates:
-        if f.line is not None and f.line in want_lines:
-            return True
-        if f.matched:
-            for v in want_values:
-                if v in f.matched or (len(f.matched) >= 6 and f.matched in v):
-                    return True
-    return False
+        hit = f.line is not None and f.line in want_lines
+        if not hit and f.matched:
+            hit = any(v in f.matched or (len(f.matched) >= 6 and f.matched in v)
+                      for v in want_values)
+        if hit:
+            rules.append(f.rule_id or "?")
+    return rules
+
+
+def is_detected(entry: dict, by_file: Dict[str, List[Finding]]) -> bool:
+    """A sample is 'detected' if at least one finding matches (see matching_rules)."""
+    return bool(matching_rules(entry, by_file))
 
 
 # ---------------------------------------------------------------------------
@@ -245,6 +290,11 @@ def build_results(manifest: List[dict], per_run_findings: Dict[str, List[Finding
     """One row per sample with a detected flag per run key."""
     indexed = {key: index_findings(fs, root) for key, fs in per_run_findings.items()}
     rows = []
+    # Revision: rule attribution -- which scanner rule/plugin produced each match,
+    # counted per (run, family, transformation, credential type, rule). Written
+    # to detected_by_rule.csv so per-transformation results can be explained
+    # mechanistically (e.g. generic-entropy rule vs provider regex vs keyword).
+    attribution: Dict[tuple, int] = {}
     for entry in manifest:
         row = {
             "id": entry["id"],
@@ -255,8 +305,13 @@ def build_results(manifest: List[dict], per_run_findings: Dict[str, List[Finding
             "carrier": entry["carrier"],
         }
         for key, by_file in indexed.items():
-            row[key] = int(is_detected(entry, by_file))
+            rules = matching_rules(entry, by_file)
+            row[key] = int(bool(rules))
+            for rid in sorted(set(rules)):
+                k = (key, entry["family"], entry["transformation_id"], entry["secret_type"], rid)
+                attribution[k] = attribution.get(k, 0) + 1
         rows.append(row)
+    build_results.attribution = attribution      # picked up by write_and_print
     return rows
 
 
@@ -311,6 +366,16 @@ def write_and_print(rows: List[dict], summary: dict, run_keys: List[str], out: P
 
     (out / "summary.json").write_text(json.dumps(summary, indent=2), encoding="utf-8")
 
+    # rule attribution (see build_results)
+    attribution = getattr(build_results, "attribution", None)
+    if attribution:
+        with (out / "detected_by_rule.csv").open("w", newline="") as fh:
+            w = csv.writer(fh)
+            w.writerow(["run", "family", "transformation_id", "secret_type", "rule_id",
+                        "samples_detected_by_rule"])
+            for k in sorted(attribution):
+                w.writerow(list(k) + [attribution[k]])
+
     # console report
     width = max(len(k) for k in run_keys)
     print("\n=== Detection rate by transformation family ===")
@@ -349,6 +414,9 @@ def load_reports_from_dir(workdir: Path, runs: List[RunSpec]) -> Dict[str, List[
         if spec.scanner == "trufflehog":
             fp = workdir / "trufflehog_default.ndjson"
             parser = parse_trufflehog
+        elif spec.scanner == "detect-secrets":
+            fp = workdir / "detect-secrets_default.json"
+            parser = parse_detect_secrets
         else:
             fp = workdir / f"{spec.scanner}_{spec.config}.json"
             parser = parse_gitleaks_family
@@ -377,12 +445,22 @@ def live_run(corpus: Path, out: Path, tools: List[str], from_reports: bool = Fal
         print(f"[scan target] {scan_dir}   (manifest read from {corpus / 'manifest.json'})")
         per_run = {}
         versions: Dict[str, str] = {}
+        timing: Dict[str, dict] = {}
+        n_files = sum(1 for p in scan_dir.rglob("*") if p.is_file())
         for spec in runs:
             print(f"[run] {spec.key}  ({spec.binary})")
             versions[spec.binary] = _tool_version(spec.binary)
+            t0 = time.perf_counter()
             per_run[spec.key] = run_spec(spec, scan_dir, workdir)
-            print(f"      {len(per_run[spec.key])} findings")
+            dt = time.perf_counter() - t0
+            # Wall-clock scan time (revision: runtime cost of each configuration,
+            # e.g. recursive decoding). Same host, same corpus, sequential runs.
+            timing[spec.key] = {"wall_seconds": round(dt, 2), "files_scanned": n_files,
+                                "files_per_second": round(n_files / dt, 1) if dt else None,
+                                "findings": len(per_run[spec.key])}
+            print(f"      {len(per_run[spec.key])} findings in {dt:.1f}s")
         (out / "tool_versions.json").write_text(json.dumps(versions, indent=2), encoding="utf-8")
+        (out / "run_timing.json").write_text(json.dumps(timing, indent=2), encoding="utf-8")
 
     run_keys = [r.key for r in runs if r.key in per_run]
     print("[match] indexing findings and matching against manifest ...")
@@ -427,8 +505,9 @@ def main():
     ap.add_argument("--corpus", required=True,
                     help="generator output root (contains manifest.json and corpus/)")
     ap.add_argument("--out", default="results")
-    ap.add_argument("--tools", nargs="+", default=["gitleaks", "betterleaks", "trufflehog"],
-                    choices=["gitleaks", "betterleaks", "trufflehog"])
+    ap.add_argument("--tools", nargs="+",
+                    default=["gitleaks", "betterleaks", "trufflehog", "detect-secrets"],
+                    choices=["gitleaks", "betterleaks", "trufflehog", "detect-secrets"])
     ap.add_argument("--selftest", action="store_true",
                     help="validate parser/matcher/metrics on fixture reports (no binaries)")
     ap.add_argument("--fixtures", default="fixtures")
