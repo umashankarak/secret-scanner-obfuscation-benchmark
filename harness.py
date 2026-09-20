@@ -504,7 +504,9 @@ def main():
     ap = argparse.ArgumentParser(description="Secret-scanner obfuscation-robustness harness")
     ap.add_argument("--corpus", required=True,
                     help="generator output root (contains manifest.json and corpus/)")
-    ap.add_argument("--out", default="results")
+    ap.add_argument("--out", default="out/results",
+                    help="output directory (default: out/results, so a run never "
+                         "overwrites the committed results/)")
     ap.add_argument("--tools", nargs="+",
                     default=["gitleaks", "betterleaks", "trufflehog", "detect-secrets"],
                     choices=["gitleaks", "betterleaks", "trufflehog", "detect-secrets"])

@@ -372,7 +372,9 @@ def extended_analysis(rows, run_keys, families, types, out: str,
 def main():
     ap = argparse.ArgumentParser(description="Ceiling-normalized robustness analysis")
     ap.add_argument("--matrix", required=True, help="path to detection_matrix.csv")
-    ap.add_argument("--out", default="results")
+    ap.add_argument("--out", default="out/results",
+                    help="output directory (default: out/results, so a run never "
+                         "overwrites the committed results/)")
     ap.add_argument("--boot", type=int, default=2000,
                     help="bootstrap replicates for 95%% CIs (0 disables the extended analysis)")
     ap.add_argument("--seed", type=int, default=7, help="bootstrap RNG seed")
