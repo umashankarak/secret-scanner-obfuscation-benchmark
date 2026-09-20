@@ -80,7 +80,7 @@ figures from it directly, with no Docker and no scanners:
 ```bash
 pip install -r requirements.txt
 python3 analyze.py --matrix results/detection_matrix.csv --out out/results_check
-python3 make_figures.py --results out/results_check
+python3 make_figures.py --results out/results_check --matrix results/detection_matrix.csv
 ```
 
 Compare `out/results_check/` and its figures against the committed `results/`
@@ -105,6 +105,9 @@ docker run --rm -v "$PWD/out:/work/out" secretbench bash -lc '
 python3 analyze.py --matrix out/results30/detection_matrix.csv --out out/results30
 python3 make_figures.py --results out/results30
 ```
+
+(In Option B the matrix already sits in the same directory, so `--matrix` is not
+needed; Figure 4 is drawn from it automatically.)
 
 The fixed `--seed 1337` and `--per-combo 30` reproduce the identical corpus and
 numbers reported in the paper. Compare `out/results30/` against the committed

@@ -227,7 +227,9 @@ def fig_depth(matrix, out: Path):
 
 def main():
     ap = argparse.ArgumentParser(description="Publication figures for the secret-scanner benchmark")
-    ap.add_argument("--results", required=True, help="dir with normalized_robustness.csv, coverage.json, detection_matrix.csv")
+    ap.add_argument("--results", required=True, help="dir with normalized_robustness.csv and coverage.json")
+    ap.add_argument("--matrix", default=None,
+                    help="path to detection_matrix.csv for Fig. 4 (default: <results>/detection_matrix.csv)")
     ap.add_argument("--out", default=None, help="output dir (default: <results>/figures)")
     ap.add_argument("--scanner", default="gitleaks", help="scanner for the decode-comparison figure")
     args = ap.parse_args()
@@ -243,10 +245,11 @@ def main():
     fig_decode(retention, out, scanner=args.scanner)
     fig_heatmap(retention, out)
     fig_coverage(coverage, out)
-    if (results / "detection_matrix.csv").exists():
-        fig_depth(load_matrix(results), out)
+    matrix_path = Path(args.matrix) if args.matrix else results / "detection_matrix.csv"
+    if matrix_path.exists():
+        fig_depth(load_matrix(matrix_path.parent), out)
     else:
-        print("  [skip] fig4: detection_matrix.csv not found")
+        print(f"  [skip] fig4: {matrix_path} not found (pass --matrix)")
     print("Done.")
 
 
