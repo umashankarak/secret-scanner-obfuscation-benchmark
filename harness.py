@@ -42,7 +42,7 @@ import sys
 from collections import defaultdict
 from dataclasses import dataclass, field
 from pathlib import Path
-from typing import Dict, List, Optional
+from typing import Dict, List, Optional, Tuple
 
 
 # ---------------------------------------------------------------------------
@@ -195,7 +195,13 @@ def run_trufflehog(spec: RunSpec, corpus: Path, workdir: Path) -> List[Finding]:
 
 def run_detect_secrets(spec: RunSpec, corpus: Path, workdir: Path) -> List[Finding]:
     # Run with cwd=corpus so reported paths are relative to the scan root.
-    cmd = [spec.binary, "scan", "--all-files", "."]
+    # --no-verify: detect-secrets otherwise checks Stripe/Slack/AWS candidates
+    # against the live services and DISCARDS any the provider rejects. Section III
+    # places verification out of scope (TruffleHog is run with --no-verification
+    # for the same reason), and the synthetic credentials are non-functional, so
+    # leaving it on both breaks the stated scope and makes results depend on how
+    # third-party APIs respond during the run. (Revision: v1 omitted this flag.)
+    cmd = [spec.binary, "scan", "--all-files", "--no-verify", "."]
     r = subprocess.run(cmd, capture_output=True, text=True, timeout=3600, cwd=str(corpus))
     (workdir / "detect-secrets_default.json").write_text(r.stdout, encoding="utf-8")
     return parse_detect_secrets(r.stdout, spec.scanner, spec.config)
@@ -251,9 +257,9 @@ def _entry_targets(entry: dict):
     return want_lines, want_values
 
 
-def matching_rules(entry: dict, by_file: Dict[str, List[Finding]]) -> List[str]:
+def matching_rules(entry: dict, by_file: Dict[str, List[Finding]]) -> List[Tuple[str, str]]:
     """
-    Return the rule ids of every finding IN THE SAMPLE'S FILE that lands on an
+    Return (rule_id, match_type) for every finding IN THE SAMPLE'S FILE that lands on an
     expected line or whose captured text matches a planted secret value.
     Composite secrets (aws_keypair) match if the scanner flags ANY component.
     Empty list = not detected. `by_file` is the per-run index from index_findings().
@@ -266,14 +272,15 @@ def matching_rules(entry: dict, by_file: Dict[str, List[Finding]]) -> List[str]:
         candidates = [f for rel, fs in by_file.items()
                       if rel.endswith(want_file) or want_file.endswith(rel)
                       for f in fs]
-    rules: List[str] = []
+    rules: List[Tuple[str, str]] = []
     for f in candidates:
-        hit = f.line is not None and f.line in want_lines
-        if not hit and f.matched:
-            hit = any(v in f.matched or (len(f.matched) >= 6 and f.matched in v)
-                      for v in want_values)
-        if hit:
-            rules.append(f.rule_id or "?")
+        line_hit = f.line is not None and f.line in want_lines
+        value_hit = bool(f.matched) and any(
+            v in f.matched or (len(f.matched) >= 6 and f.matched in v)
+            for v in want_values)
+        if line_hit or value_hit:
+            how = "both" if (line_hit and value_hit) else ("line" if line_hit else "value")
+            rules.append((f.rule_id or "?", how))
     return rules
 
 
@@ -295,6 +302,9 @@ def build_results(manifest: List[dict], per_run_findings: Dict[str, List[Finding
     # to detected_by_rule.csv so per-transformation results can be explained
     # mechanistically (e.g. generic-entropy rule vs provider regex vs keyword).
     attribution: Dict[tuple, int] = {}
+    # Revision: per-sample rule attribution with match type (line / value / both),
+    # so rule-level sensitivity analyses can be recomputed without re-scanning.
+    per_sample: List[tuple] = []
     for entry in manifest:
         row = {
             "id": entry["id"],
@@ -307,11 +317,15 @@ def build_results(manifest: List[dict], per_run_findings: Dict[str, List[Finding
         for key, by_file in indexed.items():
             rules = matching_rules(entry, by_file)
             row[key] = int(bool(rules))
-            for rid in sorted(set(rules)):
+            for rid, how in sorted(set(rules)):
                 k = (key, entry["family"], entry["transformation_id"], entry["secret_type"], rid)
                 attribution[k] = attribution.get(k, 0) + 1
+                per_sample.append((entry["id"], key, entry["secret_type"],
+                                   entry["transformation_id"], entry["family"],
+                                   entry["carrier"], rid, how))
         rows.append(row)
     build_results.attribution = attribution      # picked up by write_and_print
+    build_results.per_sample = per_sample
     return rows
 
 
@@ -367,6 +381,14 @@ def write_and_print(rows: List[dict], summary: dict, run_keys: List[str], out: P
     (out / "summary.json").write_text(json.dumps(summary, indent=2), encoding="utf-8")
 
     # rule attribution (see build_results)
+    per_sample = getattr(build_results, "per_sample", None)
+    if per_sample:
+        with (out / "sample_rule_matrix.csv").open("w", newline="") as fh:
+            w = csv.writer(fh)
+            w.writerow(["id", "run", "secret_type", "transformation_id", "family",
+                        "carrier", "rule_id", "match_type"])
+            w.writerows(per_sample)
+
     attribution = getattr(build_results, "attribution", None)
     if attribution:
         with (out / "detected_by_rule.csv").open("w", newline="") as fh:

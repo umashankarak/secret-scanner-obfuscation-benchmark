@@ -48,12 +48,22 @@ META = ["id", "secret_type", "transformation_id", "family", "depth", "carrier"]
 CONTROL_FAMILY = "control"
 
 
-def load(matrix_path: str) -> Tuple[List[dict], List[str]]:
+# T6.1 ("no keyword prefix") and T6.4 ("benign variable name") emit byte-identical
+# files: both leave the value in plaintext and both receive the benign identifier
+# from the carrier builder. The condition is therefore tested once but was counted
+# twice, giving the contextual family double weight in sample-weighted aggregates.
+# --merge-contextual drops the duplicate label so the condition is counted once.
+DUPLICATE_CONTEXTUAL = "T6.4"
+
+
+def load(matrix_path: str, merge_contextual: bool = False) -> Tuple[List[dict], List[str]]:
     rows: List[dict] = []
     with open(matrix_path, newline="") as fh:
         r = csv.DictReader(fh)
         run_keys = [c for c in r.fieldnames if c not in META]
         for d in r:
+            if merge_contextual and d.get("transformation_id") == DUPLICATE_CONTEXTUAL:
+                continue
             for k in run_keys:
                 d[k] = int(d[k])
             rows.append(d)
@@ -378,10 +388,16 @@ def main():
     ap.add_argument("--boot", type=int, default=2000,
                     help="bootstrap replicates for 95%% CIs (0 disables the extended analysis)")
     ap.add_argument("--seed", type=int, default=7, help="bootstrap RNG seed")
+    ap.add_argument("--merge-contextual", action="store_true",
+                    help="count the duplicated contextual condition once (drops T6.4, "
+                         "which emits files identical to T6.1)")
     ap.add_argument("--min-ceiling", type=float, default=0.0,
                     help="coverage threshold: exclude types whose plaintext ceiling is below this")
     args = ap.parse_args()
-    rows, run_keys = load(args.matrix)
+    rows, run_keys = load(args.matrix, merge_contextual=args.merge_contextual)
+    if args.merge_contextual:
+        print(f"[merge-contextual] duplicate condition {DUPLICATE_CONTEXTUAL} dropped; "
+              f"{len(rows)} samples analysed")
     result, families, types = analyze(rows, run_keys)
     report(result, run_keys, families, args.out)
     if args.boot > 0:

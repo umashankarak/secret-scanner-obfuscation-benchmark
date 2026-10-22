@@ -102,8 +102,12 @@ def _stripe(rng):              # sk_live_ + 24 alnum
 
 
 @secret_factory("google_api_key")
-def _google(rng):              # AIza + 35 urlsafe
-    return "AIza" + _rand(_URLSAFE, 35, rng)
+def _google(rng):              # AIzaSy + 33 urlsafe
+    # Real Google API keys carry the six-character prefix "AIzaSy"; the widely
+    # used detection pattern AIza[A-Za-z0-9_-]{35} is satisfied by this form as
+    # well, so the stricter prefix matches both the published pattern and the
+    # keys observed in practice. (Revision: v1 used "AIza" + 35.)
+    return "AIzaSy" + _rand(_URLSAFE, 33, rng)
 
 
 @secret_factory("slack_bot_token")
@@ -414,7 +418,7 @@ def _benign_name(i: int, upper: bool = False) -> str:
 
 def build_python(assignments: Assignments, family: str) -> Tuple[str, int]:
     benign = family == "contextual"
-    header = ["# synthetic benchmark sample -- DO NOT use with real secrets",
+    header = ["# synthetic benchmark sample -- generated value, non-functional",
               "import os", ""]
     body: List[str] = []
     lines_out: List[int] = []
@@ -434,7 +438,7 @@ def build_python(assignments: Assignments, family: str) -> Tuple[str, int]:
 
 def build_dotenv(assignments: Assignments, family: str) -> Tuple[str, List[int]]:
     benign = family == "contextual"
-    lines = ["# synthetic benchmark sample -- DO NOT use with real secrets"]
+    lines = ["# synthetic benchmark sample -- generated value, non-functional"]
     lines_out: List[int] = []
     for i, (name, em) in enumerate(assignments):
         key = _benign_name(i, upper=True) if benign else name.upper()
@@ -446,7 +450,7 @@ def build_dotenv(assignments: Assignments, family: str) -> Tuple[str, List[int]]
 
 def build_yaml(assignments: Assignments, family: str) -> Tuple[str, List[int]]:
     benign = family == "contextual"
-    lines = ["# synthetic benchmark sample -- DO NOT use with real secrets"]
+    lines = ["# synthetic benchmark sample -- generated value, non-functional"]
     lines_out: List[int] = []
     for i, (name, em) in enumerate(assignments):
         key = _benign_name(i) if benign else name
