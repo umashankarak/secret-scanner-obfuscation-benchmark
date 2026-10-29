@@ -1,0 +1,9 @@
+run,family,n,k,rate,cp95_lo,cp95_hi,note
+gitleaks/default,char_format,1080,0,0.0000,0.00000,0.00341,zero detections
+gitleaks/decode,char_format,1080,0,0.0000,0.00000,0.00341,zero detections
+betterleaks/default,char_format,1080,0,0.0000,0.00000,0.00341,zero detections
+betterleaks/decode,char_format,1080,0,0.0000,0.00000,0.00341,zero detections
+trufflehog/default,char_format,1080,0,0.0000,0.00000,0.00341,zero detections
+trufflehog/default,indirection,540,0,0.0000,0.00000,0.00681,zero detections
+detect-secrets/default,composition,540,0,0.0000,0.00000,0.00681,zero detections
+detect-secrets/default,control,810,810,1.0000,0.99546,1.00000,all detected

@@ -41,9 +41,12 @@ from matplotlib.colors import LinearSegmentedColormap
 # ---- publication styling ---------------------------------------------------
 plt.rcParams.update({
     "font.family": "DejaVu Sans",
-    "font.size": 10,
-    "axes.titlesize": 11,
-    "axes.labelsize": 10,
+    "font.size": 12,
+    "axes.titlesize": 13,
+    "axes.labelsize": 12,
+    "xtick.labelsize": 11,
+    "ytick.labelsize": 11,
+    "legend.fontsize": 11,
     "axes.spines.top": False,
     "axes.spines.right": False,
     "figure.dpi": 120,
@@ -138,13 +141,13 @@ def fig_heatmap(retention, out: Path):
     fig, ax = plt.subplots(figsize=(7.4, 4.2))
     im = ax.imshow(M, cmap=cmap, vmin=0, vmax=100, aspect="auto")
     ax.set_xticks(range(len(runs)))
-    ax.set_xticklabels(runs, rotation=25, ha="right", fontsize=9)
+    ax.set_xticklabels(runs, rotation=25, ha="right", fontsize=11)
     ax.set_yticks(range(len(fams)))
     ax.set_yticklabels([FAMILY_LABEL[f] for f in fams])
     for i in range(len(fams)):
         for j in range(len(runs)):
             v = M[i, j]
-            ax.text(j, i, f"{v:.0f}", ha="center", va="center", fontsize=8,
+            ax.text(j, i, f"{v:.0f}", ha="center", va="center", fontsize=10,
                     color="white" if v < 55 else "black")
     cbar = fig.colorbar(im, ax=ax, fraction=0.046, pad=0.04)
     cbar.set_label("retention (%)")
@@ -165,18 +168,18 @@ def fig_coverage(coverage, out: Path):
     fig, ax = plt.subplots(figsize=(7.4, 4.6))
     ax.imshow(covered, cmap=cmap, vmin=0, vmax=1, aspect="auto")
     ax.set_xticks(range(len(runs)))
-    ax.set_xticklabels(runs, rotation=25, ha="right", fontsize=9)
+    ax.set_xticklabels(runs, rotation=25, ha="right", fontsize=11)
     ax.set_yticks(range(len(types)))
     ax.set_yticklabels([t.replace("_", " ") for t in types])
     for i in range(len(types)):
         for j in range(len(runs)):
             mark = "\u2713" if covered[i, j] else "\u2717"
             ax.text(j, i, mark, ha="center", va="center",
-                    color="white" if covered[i, j] else OI["vermillion"], fontsize=11)
+                    color="white" if covered[i, j] else OI["vermillion"], fontsize=13)
     # coverage count above each column (clear of the rotated x labels)
     for j in range(len(runs)):
         n = int(covered[:, j].sum())
-        ax.text(j, -0.72, f"{n}/{len(types)}", ha="center", va="bottom", fontsize=9,
+        ax.text(j, -0.72, f"{n}/{len(types)}", ha="center", va="bottom", fontsize=11,
                 fontweight="bold", color=OI["black"], clip_on=False)
     ax.set_ylim(len(types) - 0.5, -0.9)
     ax.set_title("Detector coverage: which secret types each scanner\ndetects in plaintext (generic rule vs detector-specific)",
@@ -200,7 +203,7 @@ def fig_depth(matrix, out: Path):
         for r in runs:
             agg[r][d][1] += 1
             agg[r][d][0] += int(row[r])
-    fig, ax = plt.subplots(figsize=(6.4, 3.8))
+    fig, ax = plt.subplots(figsize=(7.4, 4.0))
     # Gitleaks and Betterleaks are near-coincident; distinct markers, dash
     # patterns, and a small horizontal offset keep both series readable.
     styles = {"gitleaks/default":      (OI["grey"],       "o", "-",  -0.04),
@@ -217,10 +220,10 @@ def fig_depth(matrix, out: Path):
     ax.set_xticks([1, 2, 3])
     ax.set_xticklabels(["x1 (single)", "x2 (double)", "x3 (triple)"])
     ax.set_xlabel("Base64 encoding depth")
-    ax.set_ylabel("raw detection rate (%), multi-encoding family")
+    ax.set_ylabel("raw detection rate (%)")
     ax.set_ylim(-3, 105)
     ax.set_title("Detection vs multi-encoding depth")
-    ax.legend(frameon=False, fontsize=8)
+    ax.legend(frameon=False, fontsize=10, ncol=2, loc="lower left")
     ax.grid(alpha=0.3)
     save(fig, out, "fig4_depth_ladder")
 

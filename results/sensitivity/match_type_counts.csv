@@ -1,0 +1,7 @@
+run,samples_line_only,samples_value_or_both,rulehits_line,rulehits_value,rulehits_both
+gitleaks/default,3537,2865,3537,8,2973
+gitleaks/decode,1805,6912,4340,8,7486
+betterleaks/default,3514,2865,3514,8,2973
+betterleaks/decode,1787,6910,4321,8,7482
+trufflehog/default,0,3160,0,7,3153
+detect-secrets/default,9694,0,14195,0,0

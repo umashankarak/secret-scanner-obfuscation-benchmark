@@ -1,38 +1,38 @@
 {
   "gitleaks/default": {
-    "wall_seconds": 2.01,
+    "wall_seconds": 1.81,
     "files_scanned": 14040,
-    "files_per_second": 6981.3,
-    "findings": 6524
+    "files_per_second": 7751.0,
+    "findings": 6518
   },
   "gitleaks/decode": {
-    "wall_seconds": 2.33,
+    "wall_seconds": 2.7,
     "files_scanned": 14040,
-    "files_per_second": 6032.8,
-    "findings": 13409
+    "files_per_second": 5191.7,
+    "findings": 13418
   },
   "betterleaks/default": {
-    "wall_seconds": 1.8,
+    "wall_seconds": 1.72,
     "files_scanned": 14040,
-    "files_per_second": 7821.4,
-    "findings": 6498
+    "files_per_second": 8180.2,
+    "findings": 6495
   },
   "betterleaks/decode": {
     "wall_seconds": 1.9,
     "files_scanned": 14040,
-    "files_per_second": 7374.8,
-    "findings": 13372
+    "files_per_second": 7407.7,
+    "findings": 13380
   },
   "trufflehog/default": {
-    "wall_seconds": 3.42,
+    "wall_seconds": 8.62,
     "files_scanned": 14040,
-    "files_per_second": 4100.6,
-    "findings": 2654
+    "files_per_second": 1629.5,
+    "findings": 3160
   },
   "detect-secrets/default": {
-    "wall_seconds": 37.0,
+    "wall_seconds": 6.32,
     "files_scanned": 14040,
-    "files_per_second": 379.5,
-    "findings": 13874
+    "files_per_second": 2223.1,
+    "findings": 14404
   }
 }

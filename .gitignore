@@ -3,3 +3,6 @@ results_check/
 __pycache__/
 *.pyc
 .DS_Store
+out_merged/
+out_v2_old/
+results/raw_reports/

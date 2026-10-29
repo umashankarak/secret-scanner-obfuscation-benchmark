@@ -1,7 +1,7 @@
 run,n_seeds,mean,sd,min,max
-betterleaks/decode,5,2.0980,0.1272,1.9000,2.2500
-betterleaks/default,5,1.9180,0.1462,1.8000,2.1700
-detect-secrets/default,5,37.9900,1.0287,37.0000,39.2900
-gitleaks/decode,5,2.4540,0.0932,2.3300,2.5500
-gitleaks/default,5,2.1320,0.1119,2.0100,2.3100
-trufflehog/default,5,5.8020,3.3879,3.4200,11.1500
+betterleaks/decode,5,2.2720,0.3626,1.9000,2.8200
+betterleaks/default,5,1.8660,0.1193,1.7200,2.0400
+detect-secrets/default,5,6.4260,0.4589,5.8900,7.1600
+gitleaks/decode,5,2.5200,0.1920,2.3000,2.7000
+gitleaks/default,5,2.0140,0.1992,1.8100,2.2400
+trufflehog/default,5,8.0020,0.6917,7.2200,8.7300

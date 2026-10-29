@@ -25,6 +25,9 @@ Analyses
      where a bootstrap interval has zero width.
   6. Match-type counts          How many detections rest on line position, on an
      exact value match, or on both.
+  7. URL encoding excluded      Percent-encoding is the identity on every
+     credential alphabet that lies inside the RFC 3986 unreserved set; the
+     encoding family is recomputed without it.
 
 Usage
   python3 sensitivity.py --matrix results/detection_matrix.csv \
@@ -81,6 +84,12 @@ KEYWORD_GATED = {"generic-api-key", "Secret Keyword"}
 
 DUPLICATE_CONTEXTUAL = "T6.4"   # identical to T6.1; dropped when merging
 
+# Percent-encoding leaves the credential byte-identical whenever its alphabet
+# lies inside the RFC 3986 unreserved set (letters, digits, '-', '.', '_', '~').
+# Of the nine planted types only aws_secret_access_key and the secret component
+# of aws_keypair contain '+' or '/', so this condition is a near-identity.
+IDENTITY_ENCODING = "T1.5"
+
 
 def load(matrix: str, rules: str):
     rows: List[dict] = []
@@ -113,11 +122,18 @@ def keep(rule: str, stype: str, mode: str) -> bool:
     raise ValueError(mode)
 
 
-def detections(rows, runs, per_sample, mode: str, merge_contextual: bool):
-    """-> det[(run, family, secret_type)] = [n, k]  and the per-type control ceiling."""
+def detections(rows, runs, per_sample, mode: str, merge_contextual: bool,
+               drop: frozenset = frozenset()):
+    """-> det[(run, family, secret_type)] = [n, k]  and the per-type control ceiling.
+
+    `drop` names transformation ids to exclude entirely, so the family means and
+    the ceilings are both recomputed without them.
+    """
     det = defaultdict(lambda: [0, 0])
     for r in rows:
         if merge_contextual and r["transformation_id"] == DUPLICATE_CONTEXTUAL:
+            continue
+        if r["transformation_id"] in drop:
             continue
         for run in runs:
             hit = False
@@ -189,17 +205,20 @@ def main():
     families = sorted({r["family"] for r in rows})
     types = sorted({r["secret_type"] for r in rows})
 
+    NO_URL = frozenset({IDENTITY_ENCODING})
+    NONE: frozenset = frozenset()
     scenarios = [
-        ("published",              "all",                     False),
-        ("type_consistent",        "type_consistent",         False),
-        ("identifier_independent", "identifier_independent",  False),
-        ("contextual_merged",      "all",                     True),
-        ("type_consistent+merged", "type_consistent",         True),
+        ("published",              "all",                     False, NONE),
+        ("type_consistent",        "type_consistent",         False, NONE),
+        ("identifier_independent", "identifier_independent",  False, NONE),
+        ("contextual_merged",      "all",                     True,  NONE),
+        ("type_consistent+merged", "type_consistent",         True,  NONE),
+        ("merged_no_url_encoding", "all",                     True,  NO_URL),
     ]
 
     fam_rows, idx_rows = [], []
-    for name, mode, merge in scenarios:
-        det = detections(rows, runs, per_sample, mode, merge)
+    for name, mode, merge, drop in scenarios:
+        det = detections(rows, runs, per_sample, mode, merge, drop)
         fam_n = defaultdict(int)
         for (run, f, t), (n, _k) in det.items():
             if run == runs[0]:
