@@ -16,7 +16,7 @@
       "aws_access_key_id": 1.0,
       "aws_keypair": 1.0,
       "aws_secret_access_key": 0.9444,
-      "generic_hex_token": 0.9556,
+      "generic_hex_token": 0.9667,
       "github_pat": 1.0,
       "google_api_key": 1.0,
       "jwt": 1.0,
@@ -41,7 +41,7 @@
       "aws_access_key_id": 1.0,
       "aws_keypair": 1.0,
       "aws_secret_access_key": 0.9444,
-      "generic_hex_token": 0.9556,
+      "generic_hex_token": 0.9667,
       "github_pat": 1.0,
       "google_api_key": 1.0,
       "jwt": 1.0,
@@ -66,7 +66,7 @@
       "aws_access_key_id": 1.0,
       "aws_keypair": 1.0,
       "aws_secret_access_key": 0.9444,
-      "generic_hex_token": 0.9556,
+      "generic_hex_token": 0.9667,
       "github_pat": 1.0,
       "google_api_key": 1.0,
       "jwt": 1.0,
@@ -91,7 +91,7 @@
       "aws_access_key_id": 1.0,
       "aws_keypair": 1.0,
       "aws_secret_access_key": 0.9444,
-      "generic_hex_token": 0.9556,
+      "generic_hex_token": 0.9667,
       "github_pat": 1.0,
       "google_api_key": 1.0,
       "jwt": 1.0,
@@ -103,6 +103,7 @@
     "covered": [
       "aws_keypair",
       "github_pat",
+      "google_api_key",
       "slack_bot_token",
       "stripe_secret_key"
     ],
@@ -110,7 +111,6 @@
       "aws_access_key_id",
       "aws_secret_access_key",
       "generic_hex_token",
-      "google_api_key",
       "jwt"
     ],
     "ceilings": {
@@ -119,7 +119,7 @@
       "aws_secret_access_key": 0.0,
       "generic_hex_token": 0.0,
       "github_pat": 1.0,
-      "google_api_key": 0.0,
+      "google_api_key": 0.9889,
       "jwt": 0.0,
       "slack_bot_token": 0.9889,
       "stripe_secret_key": 1.0
@@ -146,7 +146,7 @@
       "github_pat": 1.0,
       "google_api_key": 1.0,
       "jwt": 1.0,
-      "slack_bot_token": 0.8222,
+      "slack_bot_token": 1.0,
       "stripe_secret_key": 1.0
     }
   }
