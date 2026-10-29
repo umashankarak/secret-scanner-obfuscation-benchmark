@@ -13,7 +13,9 @@ credentials are collected, stored, or distributed.
 > **Note on secret-scanning alerts.** The synthetic credentials in this
 > repository are *format-valid* by design — that is the point of the benchmark —
 > so automated scanners, including GitHub's own, flag them. Every value is
-> randomly generated and authenticates against nothing. See `results/raw_reports/README.md`.
+> randomly generated and authenticates against nothing. The raw scanner reports are
+> archived as `results/raw_reports.zip` for the same reason: GitHub's push protection
+> blocks the synthetic credentials they contain.
 
 ---
 
@@ -25,6 +27,8 @@ credentials are collected, stored, or distributed.
 | `harness.py` | Runs the scanners over the corpus, matches findings to the manifest, records rule attribution and wall-clock time, and computes detection metrics. |
 | `analyze.py` | Computes ceiling-normalized robustness (retention), the robustness index and its variants, bootstrap confidence intervals, detector coverage, and the per-transformation / per-carrier / per-type breakdowns. |
 | `make_figures.py` | Produces the paper's figures (PDF + PNG) from the analysis outputs. |
+| `sensitivity.py` | Recomputes the matching-rule and condition sensitivity analyses of Section IX from the released data, without rescanning. |
+| `make_pipeline.py` | Draws the benchmark pipeline figure (Figure 1). |
 | `run_multiseed.sh` | Regenerates and scans the corpus under several seeds, then analyzes and aggregates. |
 | `aggregate_seeds.py` | Mean / SD across seeds for retention, robustness-index variants, per-transformation results, and timing. |
 | `Dockerfile` | Pins the four scanners at fixed versions and packages the tools + scripts. |
@@ -79,7 +83,7 @@ figures from it directly, with no Docker and no scanners:
 
 ```bash
 pip install -r requirements.txt
-python3 analyze.py --matrix results/detection_matrix.csv --out out/results_check
+python3 analyze.py --matrix results/detection_matrix.csv --out out/results_check --merge-contextual
 python3 make_figures.py --results out/results_check --matrix results/detection_matrix.csv
 ```
 
@@ -102,7 +106,7 @@ docker run --rm -v "$PWD/out:/work/out" secretbench bash -lc '
   python harness.py --corpus /work/out/run30 --out /work/out/results30'
 
 # Compute robustness metrics and figures (run natively on the host)
-python3 analyze.py --matrix out/results30/detection_matrix.csv --out out/results30
+python3 analyze.py --matrix out/results30/detection_matrix.csv --out out/results30 --merge-contextual
 python3 make_figures.py --results out/results30
 ```
 
@@ -146,7 +150,7 @@ pip install detect-secrets==1.5.0
 
 python3 obfuscation_corpus_generator.py --outdir out/run30 --per-combo 30 --seed 1337
 python3 harness.py --corpus out/run30 --out out/results30
-python3 analyze.py --matrix out/results30/detection_matrix.csv --out out/results30
+python3 analyze.py --matrix out/results30/detection_matrix.csv --out out/results30 --merge-contextual
 python3 make_figures.py --results out/results30
 ```
 
@@ -177,7 +181,10 @@ For reviewers or readers who prefer not to run the pipeline:
   - `coverage.json` — detector coverage per scanner (Figure 5).
   - `multiseed/` — cross-seed mean and SD (Table 5).
   - `tool_versions.json` — the exact scanner versions used.
-  - `raw_reports/` — unmodified native-format scanner output.
+  - `sample_rule_matrix.csv` — the (rule, match type) pair behind every detection.
+  - `sensitivity/` — the six matching-rule and condition scenarios reported in Section IX.
+  - `raw_reports.zip` — unmodified native-format scanner output, archived rather than stored
+    loose because it contains the corpus's synthetic credentials.
 
 ---
 

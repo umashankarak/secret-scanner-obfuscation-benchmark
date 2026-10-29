@@ -155,14 +155,18 @@ def parse_detect_secrets(stdout_text: str, scanner: str, config: str) -> List[Fi
 # Runners  (shell out to the real binaries)
 # ---------------------------------------------------------------------------
 def _tool_version(binary: str) -> str:
-    for args in ([binary, "version"], [binary, "--version"]):
+    # --version is tried first because TruffleHog has no `version` subcommand;
+    # a non-zero exit means the probe failed, so its output is not a version.
+    for args in ([binary, "--version"], [binary, "version"]):
         try:
             r = subprocess.run(args, capture_output=True, text=True, timeout=30)
-            v = (r.stdout or r.stderr).strip().splitlines()
-            if v:
-                return v[0]
         except (FileNotFoundError, subprocess.TimeoutExpired):
             continue
+        if r.returncode != 0:
+            continue
+        v = (r.stdout or r.stderr).strip().splitlines()
+        if v:
+            return v[0].strip()
     return "unknown"
 
 
