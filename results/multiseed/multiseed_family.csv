@@ -17,7 +17,7 @@ betterleaks/default,multi_encoding,5,0.4457,0.0033,0.4425,0.4498
 betterleaks/default,splitting,5,0.0424,0.0040,0.0366,0.0465
 detect-secrets/default,char_format,5,0.3294,0.0008,0.3287,0.3306
 detect-secrets/default,composition,5,0.0000,0.0000,0.0000,0.0000
-detect-secrets/default,contextual,5,0.9952,0.0020,0.9920,0.9975
+detect-secrets/default,contextual,5,0.9958,0.0019,0.9938,0.9975
 detect-secrets/default,control,5,1.0000,0.0000,1.0000,1.0000
 detect-secrets/default,encoding,5,0.7637,0.0013,0.7623,0.7656
 detect-secrets/default,indirection,5,0.3781,0.0015,0.3759,0.3796
@@ -41,7 +41,7 @@ gitleaks/default,multi_encoding,5,0.4481,0.0030,0.4451,0.4514
 gitleaks/default,splitting,5,0.0425,0.0039,0.0366,0.0465
 trufflehog/default,char_format,5,0.0000,0.0000,0.0000,0.0000
 trufflehog/default,composition,5,0.0147,0.0051,0.0100,0.0202
-trufflehog/default,contextual,5,0.9982,0.0010,0.9967,0.9989
+trufflehog/default,contextual,5,0.9987,0.0012,0.9978,1.0000
 trufflehog/default,control,5,1.0000,0.0000,1.0000,1.0000
 trufflehog/default,encoding,5,0.2861,0.0008,0.2848,0.2870
 trufflehog/default,indirection,5,0.0000,0.0000,0.0000,0.0000

@@ -20,7 +20,6 @@ betterleaks/decode,T4.5,char_format,5,0.0000,0.0000,0.0000,0.0000
 betterleaks/decode,T5.1,indirection,5,0.6498,0.0088,0.6403,0.6630
 betterleaks/decode,T5.2,indirection,5,0.0000,0.0000,0.0000,0.0000
 betterleaks/decode,T6.1,contextual,5,0.7778,0.0000,0.7778,0.7778
-betterleaks/decode,T6.4,contextual,5,0.7778,0.0000,0.7778,0.7778
 betterleaks/decode,T7.1,composition,5,0.0682,0.0033,0.0667,0.0741
 betterleaks/decode,T7.2,composition,5,0.0000,0.0000,0.0000,0.0000
 betterleaks/default,T0.0,control,5,1.0000,0.0000,1.0000,1.0000
@@ -44,7 +43,6 @@ betterleaks/default,T4.5,char_format,5,0.0000,0.0000,0.0000,0.0000
 betterleaks/default,T5.1,indirection,5,0.6498,0.0088,0.6403,0.6630
 betterleaks/default,T5.2,indirection,5,0.0000,0.0000,0.0000,0.0000
 betterleaks/default,T6.1,contextual,5,0.7778,0.0000,0.7778,0.7778
-betterleaks/default,T6.4,contextual,5,0.7778,0.0000,0.7778,0.7778
 betterleaks/default,T7.1,composition,5,0.0414,0.0061,0.0333,0.0481
 betterleaks/default,T7.2,composition,5,0.0000,0.0000,0.0000,0.0000
 detect-secrets/default,T0.0,control,5,1.0000,0.0000,1.0000,1.0000
@@ -68,7 +66,6 @@ detect-secrets/default,T4.5,char_format,5,0.4393,0.0010,0.4383,0.4407
 detect-secrets/default,T5.1,indirection,5,0.7563,0.0031,0.7519,0.7593
 detect-secrets/default,T5.2,indirection,5,0.0000,0.0000,0.0000,0.0000
 detect-secrets/default,T6.1,contextual,5,0.9958,0.0019,0.9938,0.9975
-detect-secrets/default,T6.4,contextual,5,0.9946,0.0028,0.9901,0.9975
 detect-secrets/default,T7.1,composition,5,0.0000,0.0000,0.0000,0.0000
 detect-secrets/default,T7.2,composition,5,0.0000,0.0000,0.0000,0.0000
 gitleaks/decode,T0.0,control,5,1.0000,0.0000,1.0000,1.0000
@@ -92,7 +89,6 @@ gitleaks/decode,T4.5,char_format,5,0.0000,0.0000,0.0000,0.0000
 gitleaks/decode,T5.1,indirection,5,0.6510,0.0080,0.6429,0.6630
 gitleaks/decode,T5.2,indirection,5,0.0000,0.0000,0.0000,0.0000
 gitleaks/decode,T6.1,contextual,5,0.7778,0.0000,0.7778,0.7778
-gitleaks/decode,T6.4,contextual,5,0.7778,0.0000,0.7778,0.7778
 gitleaks/decode,T7.1,composition,5,0.0682,0.0033,0.0667,0.0741
 gitleaks/decode,T7.2,composition,5,0.0000,0.0000,0.0000,0.0000
 gitleaks/default,T0.0,control,5,1.0000,0.0000,1.0000,1.0000
@@ -116,7 +112,6 @@ gitleaks/default,T4.5,char_format,5,0.0000,0.0000,0.0000,0.0000
 gitleaks/default,T5.1,indirection,5,0.6510,0.0080,0.6429,0.6630
 gitleaks/default,T5.2,indirection,5,0.0000,0.0000,0.0000,0.0000
 gitleaks/default,T6.1,contextual,5,0.7778,0.0000,0.7778,0.7778
-gitleaks/default,T6.4,contextual,5,0.7778,0.0000,0.7778,0.7778
 gitleaks/default,T7.1,composition,5,0.0414,0.0061,0.0333,0.0481
 gitleaks/default,T7.2,composition,5,0.0000,0.0000,0.0000,0.0000
 trufflehog/default,T0.0,control,5,1.0000,0.0000,1.0000,1.0000
@@ -140,6 +135,5 @@ trufflehog/default,T4.5,char_format,5,0.0000,0.0000,0.0000,0.0000
 trufflehog/default,T5.1,indirection,5,0.0000,0.0000,0.0000,0.0000
 trufflehog/default,T5.2,indirection,5,0.0000,0.0000,0.0000,0.0000
 trufflehog/default,T6.1,contextual,5,0.9987,0.0012,0.9978,1.0000
-trufflehog/default,T6.4,contextual,5,0.9978,0.0016,0.9956,1.0000
 trufflehog/default,T7.1,composition,5,0.0295,0.0102,0.0200,0.0404
 trufflehog/default,T7.2,composition,5,0.0000,0.0000,0.0000,0.0000

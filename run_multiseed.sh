@@ -40,7 +40,7 @@ for s in ${SEEDS}; do
   fi
   echo "== ${d}: analyze (bootstrap B=${BOOT})"
   python3 analyze.py --matrix "${OUT}/${d}/results/detection_matrix.csv" \
-                     --out "${OUT}/${d}/results" --boot "${BOOT}"
+                     --out "${OUT}/${d}/results" --boot "${BOOT}" --merge-contextual
 done
 
 echo "== aggregating across seeds"
