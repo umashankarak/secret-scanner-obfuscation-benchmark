@@ -1,8 +1,9 @@
-# Hiding in Plain Sight: A Taxonomy and Benchmark for the Obfuscation Robustness of Secret Scanners
+# Hiding in Plain Sight: A Taxonomy and Controlled Evaluation Framework for the Obfuscation Robustness of Secret Scanners
 
 This repository contains the corpus generator, evaluation harness, analysis
 scripts, and released artifacts for the paper *"Hiding in Plain Sight: A
-Taxonomy and Benchmark for the Obfuscation Robustness of Secret Scanners."*
+Taxonomy and Controlled Evaluation Framework for the Obfuscation Robustness of
+Secret Scanners."*
 
 The benchmark measures how well secret scanners (Gitleaks, Betterleaks,
 TruffleHog, and detect-secrets) detect credentials that have been deliberately **obfuscated** —
@@ -11,8 +12,9 @@ at run time. All secrets used are **synthetic and non-functional**; no real
 credentials are collected, stored, or distributed.
 
 > **Note on secret-scanning alerts.** The synthetic credentials in this
-> repository are *format-valid* by design — that is the point of the benchmark —
-> so automated scanners, including GitHub's own, flag them. Every value is
+> repository are *prefix-, length- and character-set-valid* by design — they match
+> the patterns scanners look for, which is the point of the benchmark — so
+> automated scanners, including GitHub's own, flag them. Every value is
 > randomly generated and authenticates against nothing. The raw scanner reports are
 > archived as `results/raw_reports.zip` for the same reason: GitHub's push protection
 > blocks the synthetic credentials they contain.
@@ -27,7 +29,7 @@ credentials are collected, stored, or distributed.
 | `harness.py` | Runs the scanners over the corpus, matches findings to the manifest, records rule attribution and wall-clock time, and computes detection metrics. |
 | `analyze.py` | Computes ceiling-normalized robustness (retention), the robustness index and its variants, bootstrap confidence intervals, detector coverage, and the per-transformation / per-carrier / per-type breakdowns. |
 | `make_figures.py` | Produces the paper's figures (PDF + PNG) from the analysis outputs. |
-| `sensitivity.py` | Recomputes the matching-rule and condition sensitivity analyses of Section IX from the released data, without rescanning. |
+| `sensitivity.py` | Recomputes the matching-rule and condition sensitivity analyses of Section 5.5.1 from the released data, without rescanning. |
 | `make_pipeline.py` | Draws the benchmark pipeline figure (Figure 1). |
 | `run_multiseed.sh` | Regenerates and scans the corpus under several seeds, then analyzes and aggregates. |
 | `aggregate_seeds.py` | Mean / SD across seeds for retention, robustness-index variants, per-transformation results, and timing. |
@@ -57,7 +59,8 @@ Scanner behavior changes across releases, so these are pinned in the
 The four scanners are evaluated under **six run configurations**: Gitleaks and
 Betterleaks each with recursive decoding explicitly disabled
 (`--max-decode-depth 0`) and enabled to depth 4, TruffleHog with verification
-disabled, and detect-secrets with its default plugin set.
+disabled (it decodes to depth 5 by default, which is left in place), and
+detect-secrets with its default plugin set and verification disabled.
 
 ---
 
@@ -84,12 +87,27 @@ figures from it directly, with no Docker and no scanners:
 ```bash
 pip install -r requirements.txt
 python3 analyze.py --matrix results/detection_matrix.csv --out out/results_check --merge-contextual
+python3 sensitivity.py --matrix results/detection_matrix.csv --rules results/sample_rule_matrix.csv --out out/sensitivity_check
 python3 make_figures.py --results out/results_check --matrix results/detection_matrix.csv
 ```
 
-Compare `out/results_check/` and its figures against the committed `results/`
-and `figures/` — the point estimates should match exactly. (Bootstrap interval
-endpoints are reproducible for a given `--seed`, which defaults to 7.)
+Compare `out/results_check/` and `out/sensitivity_check/` against the committed
+`results/` and `results/sensitivity/` — every file should match byte for byte.
+(Bootstrap interval endpoints are reproducible for a given `--seed`, which
+defaults to 7.)
+
+**How the paper's tables round.** Each percentage in the paper is the value in
+the released four-decimal file multiplied by 100 and formatted to one decimal
+(Python's `f"{100*x:.1f}"`). A value recomputed at full precision and rounded
+directly can differ by 0.1 in cells that sit on a rounding boundary (for example
+Base85 under Gitleaks: 0.0025 in `by_transformation.csv`, 0.254% unrounded,
+printed as 0.2).
+
+**Table 7, char/format row.** The table restricts this family to zero-width
+insertion, the one character-level transformation realizable in every carrier.
+`by_carrier.csv` reports the whole family, so its Python row also includes
+escape sequences (540 samples, not 270); the restricted values come from
+`detection_matrix.csv` with `transformation_id == T4.5`.
 
 ### Option B — reproduce end to end from scratch (with scanning)
 
@@ -113,9 +131,24 @@ python3 make_figures.py --results out/results30
 (In Option B the matrix already sits in the same directory, so `--matrix` is not
 needed; Figure 4 is drawn from it automatically.)
 
-The fixed `--seed 1337` and `--per-combo 30` reproduce the identical corpus and
-numbers reported in the paper. Compare `out/results30/` against the committed
-`results/`.
+The fixed `--seed 1337` and `--per-combo 30` reproduce the archived corpus
+byte for byte, and with it the numbers reported in the paper. Compare
+`out/results30/` against the committed `results/`.
+
+To reproduce the measurements without regenerating, scan the archived corpus
+directly — this gives `results/` exactly, on any platform:
+
+```bash
+unzip -q corpus/corpus.zip -d out/canonical
+python harness.py --corpus out/canonical --out out/results_canonical
+```
+
+*Note on zlib.* Byte-for-byte regeneration of the 810 Gzip + Base64 samples
+assumes Python's standard zlib, which the Docker image uses. Some recent Python
+builds link against zlib-ng instead, which compresses one of the 900 gzip
+streams differently; that sample is then missed by both Betterleaks
+configurations, moving Betterleaks' Gzip + Base64 cell in Table 8 by 0.1–0.2
+points. Scanning `corpus/corpus.zip` as above avoids this.
 
 **Apple Silicon / ARM hosts:** the pinned scanner binaries are `linux/amd64`, so
 add `--platform linux/amd64` to both the `docker build` and `docker run`
@@ -136,7 +169,7 @@ SKIP_BUILD=1 ./run_multiseed.sh          # image already built
 
 Per-seed results land in `out/seed_<n>/results/`; cross-seed mean and standard
 deviation are written to `out/multiseed/` and are also committed under
-`results/multiseed/`.
+`results/multiseed/` (Supplementary Table S4; timing in Table S5).
 
 ### Option D — run natively without Docker (optional)
 
@@ -154,8 +187,10 @@ python3 analyze.py --matrix out/results30/detection_matrix.csv --out out/results
 python3 make_figures.py --results out/results30
 ```
 
-Record the installed versions (the harness writes them to `tool_versions.json`);
-they may differ from the pinned versions above.
+On Linux, the Gitleaks, Betterleaks and TruffleHog release archives named in the
+`Dockerfile` can be downloaded and unpacked onto `PATH` in place of the `brew`
+and `curl | sh` lines. Record the installed versions (the harness writes them to
+`tool_versions.json`); they may differ from the pinned versions above.
 
 ---
 
@@ -170,19 +205,19 @@ For reviewers or readers who prefer not to run the pipeline:
 - **`results/`** contains the exact output files behind the paper:
   - `detection_matrix.csv` — per-sample detection outcome for every run.
   - `summary_by_family.csv`, `summary.json`, `raw_rates.csv` — raw detection rates (Supplementary Table S1).
-  - `normalized_robustness.csv` — ceiling-normalized retention (Table 6).
+  - `normalized_robustness.csv` — ceiling-normalized retention (Table 5).
   - `retention_ci.csv` — retention with bootstrap 95% confidence intervals.
-  - `robustness_index_variants.csv` — the index under four aggregations (Table 7).
-  - `by_carrier.csv` — retention by carrier (Table 8).
-  - `by_transformation.csv` — retention by individual transformation (Table 9).
+  - `robustness_index_variants.csv` — the index under four aggregations (Table 6).
+  - `by_carrier.csv` — retention by carrier (Table 7).
+  - `by_transformation.csv` — retention by individual transformation (Table 8).
   - `by_type.csv`, `ceilings.csv` — per-credential-type retention and auditable plaintext ceilings (Supplementary Table S2).
   - `detected_by_rule.csv` — which scanner rule or plugin produced each match.
-  - `run_timing.json` — wall-clock scan time per configuration (Table 10).
+  - `run_timing.json` — wall-clock scan time per configuration (Supplementary Table S5).
   - `coverage.json` — detector coverage per scanner (Figure 5).
-  - `multiseed/` — cross-seed mean and SD (Table 5).
+  - `multiseed/` — cross-seed mean and SD (Supplementary Table S4).
   - `tool_versions.json` — the exact scanner versions used.
   - `sample_rule_matrix.csv` — the (rule, match type) pair behind every detection.
-  - `sensitivity/` — the six matching-rule and condition scenarios reported in Section IX.
+  - `sensitivity/` — the matching-rule and condition scenarios reported in Section 5.5.1, and the match-type counts of Supplementary Table S3.
   - `raw_reports.zip` — unmodified native-format scanner output, archived rather than stored
     loose because it contains the corpus's synthetic credentials.
 
@@ -210,8 +245,8 @@ is written outside the scanned `corpus/` directory so it is never itself scanned
 ## Ethics
 
 All secrets in this repository are **synthetic**: randomly generated to be
-format-valid (so scanner rules engage) but non-functional (they authenticate
-against nothing). No real credentials were collected, stored, or released. The
+prefix-, length- and character-set-valid (so scanner rules engage) but
+non-functional (they authenticate against nothing). No real credentials were collected, stored, or released. The
 individual obfuscation transformations studied are elementary and long known;
 the contribution is their systematic organization and the empirical measurement
 of scanner robustness, intended to help tool maintainers close detection gaps.
@@ -229,11 +264,11 @@ Released under the MIT License. See `LICENSE`.
 If you use this benchmark, please cite the paper:
 
 ```bibtex
-@article{kalaiah2026hiding,
-  title   = {Hiding in Plain Sight: A Taxonomy and Benchmark for the
-             Obfuscation Robustness of Secret Scanners},
-  author  = {Kalaiah, Umashankara},
-  journal = {IEEE Access},
-  year    = {2026}
+@unpublished{kalaiah2026hiding,
+  title  = {Hiding in Plain Sight: A Taxonomy and Controlled Evaluation Framework
+            for the Obfuscation Robustness of Secret Scanners},
+  author = {Kalaiah, Umashankara},
+  note   = {Manuscript submitted for publication},
+  year   = {2026}
 }
 ```

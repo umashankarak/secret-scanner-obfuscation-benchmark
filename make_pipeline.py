@@ -56,7 +56,7 @@ for i in range(4):
     arrow([(XS[i] + BW + 0.6, ymid), (XS[i + 1] - 0.6, ymid)])
 
 # taxonomy feeds the generator
-ax.text(XS[0] + BW / 2, TOP + BH + 7.0, "Taxonomy (Section IV)", ha="center",
+ax.text(XS[0] + BW / 2, TOP + BH + 7.0, "Taxonomy (Section 3.2)", ha="center",
         va="center", fontsize=8.8, style="italic", color=OI["blue"])
 arrow([(XS[0] + BW / 2, TOP + BH + 4.4), (XS[0] + BW / 2, TOP + BH + 0.6)],
       color=OI["blue"], lw=1.3)

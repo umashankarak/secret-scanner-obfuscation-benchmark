@@ -256,9 +256,25 @@ def _t_rot13(secret, rng):
     return Emission(e, codecs.decode(e, "rot_13"))
 
 
+# gzip writes a modification time into its header, by default the current time,
+# so two runs with the same seed used to write different bytes for every
+# Gzip+Base64 sample. Each credential type is now stamped with the time that the
+# archived corpus (corpus/corpus.zip) carries, so regeneration reproduces the
+# archive byte for byte. Zero is avoided deliberately: it makes every Base64 form
+# begin "H4sIAAAAAAA", and the generic rule of Gitleaks and Betterleaks discards
+# any value containing the stopword "aaaaaa", which would change the results.
+_GZIP_MTIME = {
+    "aws_access_key_id": 1792637254, "aws_secret_access_key": 1792637254,
+    "github_pat": 1792637255, "stripe_secret_key": 1792637255,
+    "google_api_key": 1792637256, "slack_bot_token": 1792637256, "jwt": 1792637256,
+    "generic_hex_token": 1792637257, "aws_keypair": 1792637257,
+}
+_gzip_mtime = 1792637254  # set per credential type in _make_sample
+
+
 @register("T1.7", "Gzip + Base64", "encoding", ALL_CARRIERS)
 def _t_gzip_b64(secret, rng):
-    e = base64.b64encode(gzip.compress(secret.encode())).decode()
+    e = base64.b64encode(gzip.compress(secret.encode(), mtime=_gzip_mtime)).decode()
     return Emission(e, gzip.decompress(base64.b64decode(e)).decode())
 
 
@@ -468,6 +484,8 @@ CARRIER_EXT = {"python": ".py", "dotenv": ".env", "yaml": ".yaml"}
 # 4. Generation driver
 # ---------------------------------------------------------------------------
 def _make_sample(stype: str, tr: Transform, carrier: str, rng: random.Random):
+    global _gzip_mtime
+    _gzip_mtime = _GZIP_MTIME.get(stype, 1792637254)
     """Return (assignments, primary_value, components_meta, all_ok) or None to skip."""
     if stype in COMPOSITE_SECRETS:
         components = COMPOSITE_SECRETS[stype](rng)

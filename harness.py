@@ -190,6 +190,7 @@ def run_trufflehog(spec: RunSpec, corpus: Path, workdir: Path) -> List[Finding]:
         spec.binary, "filesystem", str(corpus),
         "--json",
         "--no-verification",           # fake secrets: never make live API calls
+        "--no-update",                 # keep the pinned binary; never self-update mid-scan
         "--concurrency", "4",
     ]
     r = subprocess.run(cmd, capture_output=True, text=True, timeout=3600)
@@ -200,7 +201,7 @@ def run_trufflehog(spec: RunSpec, corpus: Path, workdir: Path) -> List[Finding]:
 def run_detect_secrets(spec: RunSpec, corpus: Path, workdir: Path) -> List[Finding]:
     # Run with cwd=corpus so reported paths are relative to the scan root.
     # --no-verify: detect-secrets otherwise checks Stripe/Slack/AWS candidates
-    # against the live services and DISCARDS any the provider rejects. Section III
+    # against the live services and DISCARDS any the provider rejects. Section 3.1
     # places verification out of scope (TruffleHog is run with --no-verification
     # for the same reason), and the synthetic credentials are non-functional, so
     # leaving it on both breaks the stated scope and makes results depend on how

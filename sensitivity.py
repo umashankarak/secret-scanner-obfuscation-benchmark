@@ -21,7 +21,7 @@ Analyses
   3. detect-secrets without its keyword plugin (a special case of 2).
   4. Contextual merge           T6.1 and T6.4 emit identical files; the family is
      recomputed as a single condition.
-  5. Clopper-Pearson bounds     Exact one-sided bounds for cells at 0% or 100%,
+  5. Clopper-Pearson bounds     Exact two-sided 95% bounds for cells at 0% or 100%,
      where a bootstrap interval has zero width.
   6. Match-type counts          How many detections rest on line position, on an
      exact value match, or on both.
@@ -179,7 +179,8 @@ def indices(fam: Dict[str, float], fam_n: Dict[str, int]):
 
 
 def clopper_pearson_degenerate(k: int, n: int, conf: float = 0.95):
-    """Exact one-sided bound for the cells a bootstrap cannot bound: k=0 or k=n."""
+    """Exact two-sided bound (alpha/2 in each tail) for the cells a bootstrap
+    cannot bound: k=0 or k=n."""
     a = (1 - conf) / 2
     if n == 0:
         return (0.0, 1.0)
